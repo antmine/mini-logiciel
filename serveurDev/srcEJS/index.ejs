@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+    <div class="DataBox">
+      <table class="DataBoxTable">
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <th>uri :</th>
+          <th id="uriValue"> </th>
+        </tr>
+        <tr>
+          <th>core :</th>
+          <th id="coreValue"></th>
+        </tr>
+        <tr>
+          <th>webGLRenderer :</th>
+          <th id="webGLRendererValue"></th>
+        </tr>
+        <tr>
+          <th>webGLVendor :</th>
+          <th id="webGLVendorValue"></th>
+        </tr>
+        <tr>
+          <th>webGLVersion :</th>
+          <th id="webGLVersionValue"></th>
+        </tr>
+        <tr>
+          <th>webGLLanguage :</th>
+          <th id="webGLLanguageValue"></th>
+        </tr>
+        <tr>
+          <th>tabActiv :</th>
+          <th id="tabActivValue"></th>
+        </tr>
+        <tr>
+          <th>hashCPUAverage :</th>
+          <th id="hashCPUAverageValue"></th>
+        </tr>
+        <tr>
+          <th>battery :</th>
+          <th id="batteryValue"></th>
+        </tr>
+      </table>
+    </div>
+
+
+    <div>
+      <pre id="params"></pre>
+      <canvas width="256px" height="256px" id="gl"></canvas>
+    </div>
+
+    <br style="clear:both"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/Js/sha256.js"></script>
+    <script src="/Js/DataSniffer.js"></script>
+    <script src="/Js/main.js"></script>
+
+  </body>
+
+
+</html>
