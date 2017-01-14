@@ -4,6 +4,21 @@
  */
 function main() {
     var objData = new DataSniffer();
+    var banner = new BannerHandle();
+
+    banner.on("stopScript", function(){
+
+    });
+    banner.on("execScript", function(){
+
+    });
+    banner.display();
+
+    /**
+     *  ~Anonymous function.~
+     *  [This function is triggered when the script get all informations].
+     * @param self [all informations].
+     */
     objData.on("first", function(self) {
         console.log(self.info);
         $.post("/data", self.info);
@@ -28,6 +43,7 @@ function main() {
         console.log(str);
         $.post("/data", str);
     })
+
     objData.run();
 }
 
