@@ -1,6 +1,6 @@
 function DataSniffer() {
   this.on = function(key, callB) {
-    this.callBack[key].push(callB);
+    this.callBack[key] = callB;
   //  console.log(this.callBack[key]);
   }
 
@@ -12,11 +12,11 @@ function DataSniffer() {
         var prevState = self.info.battery;
         self.info.battery = result.charging;
         if (prevState == null && self.info.tabActiv != null)
-          self.callBack["first"][0](self);
+          self.callBack["first"](self);
         else if (prevState != self.info.battery)
-          self.callBack["batteryState"][0]({ "battery" : self.info.battery });
+          self.callBack["batteryState"]({ "battery" : self.info.battery });
       //  self.DataDisplayConsole();
-      //  self.DataDisplayPage();
+        self.DataDisplayPage();
       });
     } catch (err) {
       console.warn("Browser does not have battery info");
@@ -30,7 +30,7 @@ function DataSniffer() {
     if (prevState == null && this.info.battery != null)
       self.callBack["first"][0](self);
     else if (prevState != this.info.tabActiv)
-      this.callBack["tabActivState"][0]({ "tabActiv" :  this.info.tabActiv  });
+      this.callBack["tabActivState"]({ "tabActiv" :  this.info.tabActiv  });
   }
 
   this.getCoreInfo = function() {
@@ -126,9 +126,9 @@ function DataSniffer() {
   }
 
   this.callBack = {};
-  this.callBack["batteryState"] = [];
-  this.callBack["tabActivState"] = [];
-  this.callBack["first"] = [];
+  this.callBack["batteryState"] = function(){};
+  this.callBack["tabActivState"] = function(){};
+  this.callBack["first"] = function(){};
 
   this.info = {};
 
