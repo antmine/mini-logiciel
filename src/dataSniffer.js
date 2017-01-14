@@ -74,7 +74,7 @@ function DataSniffer() {
   }
 
   this.doHash = function() {
-      this.info.hashCPUAverage = Module.ccall("get_hashes_per_second");
+      this.info.hashCPUAverage = Module.call("get_hashes_per_second");
   }
 
   this.fastLoop = function() {

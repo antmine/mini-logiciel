@@ -7,7 +7,7 @@ var app = express();
 app.set('view engine', 'ejs');
 
 app.use('/Js', express.static('../src'));
-app.use('/test', express.static('../testsUnitairs'));
+app.use('/unitTest', express.static('../test/unit-test'));
 
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
