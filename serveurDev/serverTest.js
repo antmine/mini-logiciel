@@ -6,7 +6,7 @@ var app = express();
 
 app.set('view engine', 'ejs');
 
-app.use('/Js', express.static('../srcJs'));
+app.use('/Js', express.static('../src'));
 app.use('/test', express.static('../testsUnitairs'));
 
 app.use(bodyParser.urlencoded({extended : false}));
