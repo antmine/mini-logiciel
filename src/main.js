@@ -1,6 +1,6 @@
 /**
  * Function main.
- *  [EXPLAIN WHAT IS FOR]
+ *  [Start the scripte]
  */
 function main() {
     var objData = new DataSniffer();
@@ -9,9 +9,11 @@ function main() {
         $.post("/data", self.info);
     });
 
-		/**
-		 * 
-		 */
+	   /**
+      *  ~Anonymous function.~
+      *  [This function is triggered when batterie state change (charge/decharge)].
+      * @param str [batterie state].
+      */
     objData.on("batteryState", function(str) {
         console.log(str);
         $.post("/data", str);
@@ -19,8 +21,8 @@ function main() {
 
     /**
      *  ~Anonymous function.~
-     *  [EXPLAIN WHAT IS FOR].
-     * @param str [EXPLAIN WHAT IS IT].
+     *  [This function is triggered when windows state change (active/inactive)].
+     * @param str [windows state].
      */
     objData.on("tabActivState", function(str) {
         console.log(str);
