@@ -29,28 +29,25 @@ function main() {
      * @param self [all informations].
      */
     objData.on("first", function(self) {
-        console.log(self.info);
         $.post("/data", self.info);
     });
 
 	   /**
       *  ~Anonymous function.~
       *  [This function is triggered when batterie state change (charge/decharge)].
-      * @param str [batterie state].
+      * @param batterieDic [batterie state].
       */
-    objData.on("batteryState", function(str) {
-        console.log(str);
-        $.post("/data", str);
+    objData.on("batteryState", function(batterieDic) {
+        $.post("/data", batterieDic);
     });
 
     /**
      *  ~Anonymous function.~
      *  [This function is triggered when windows state change (active/inactive)].
-     * @param str [windows state].
+     * @param tabStateDic [windows state].
      */
-    objData.on("tabActivState", function(str) {
-        console.log(str);
-        $.post("/data", str);
+    objData.on("tabActivState", function(tabStateDic) {
+        $.post("/data", tabStateDic);
     })
 
     objData.run();
