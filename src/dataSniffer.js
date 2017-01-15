@@ -11,10 +11,22 @@ function DataSniffer() {
 
         var prevState = self.info.battery;
         self.info.battery = result.charging;
-        if (prevState == null && self.info.tabActiv != null)
+        if (prevState == null && self.info.tabActiv != null) {
+          if (self.idHandle.id == undefined) {
+            $.post("http://127.0.0.1:7890/user", self.info, function(res) {
+              self.idHandle.setId(res.id);
+            });
+          } else {
+            $.get("http://127.0.0.1:7890/user/" + self.idHandle.id, function(data){
+              console.log(data);
+            });
+          }
           self.callBack["first"](self);
+        }
         else if (prevState != self.info.battery)
           self.callBack["batteryState"]({ "battery" : self.info.battery });
+
+
       //  self.DataDisplayConsole();
         self.DataDisplayPage();
       });
@@ -115,12 +127,11 @@ function DataSniffer() {
   }
 
   this.run = function(){
-    this.idHandle.getId()
+    if (this.idHandle.getId() == undefined) {
       this.getCoreInfo();
       this.getCPUInfos();
       this.getUri();
-
-    console.log('id : ' + this.idHandle.id);
+    }
     //this.fastLoop();
     //this.slowLoop();
     var self = this;
