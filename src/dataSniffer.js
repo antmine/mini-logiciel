@@ -115,9 +115,12 @@ function DataSniffer() {
   }
 
   this.run = function(){
-    this.getCoreInfo();
-    this.getCPUInfos();
-    this.getUri();
+    this.idHandle.getId()
+      this.getCoreInfo();
+      this.getCPUInfos();
+      this.getUri();
+
+    console.log('id : ' + this.idHandle.id);
     //this.fastLoop();
     //this.slowLoop();
     var self = this;
@@ -131,6 +134,7 @@ function DataSniffer() {
   this.callBack["first"] = function(){};
 
   this.info = {};
+  this.idHandle = new IdHandle();
 
   return this;
 }
