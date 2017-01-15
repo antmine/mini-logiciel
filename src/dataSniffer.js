@@ -12,20 +12,11 @@ function DataSniffer() {
         var prevState = self.info.battery;
         self.info.battery = result.charging;
         if (prevState == null && self.info.tabActiv != null) {
-          if (self.idHandle.id == undefined) {
-            $.post("http://127.0.0.1:7890/user", self.info, function(res) {
-              self.idHandle.setId(res.id);
-            });
-          } else {
-            $.get("http://127.0.0.1:7890/user/" + self.idHandle.id, function(data){
-              console.log(data);
-            });
-          }
+          self.IdHandle.connect(self.info);
           self.callBack["first"](self);
         }
         else if (prevState != self.info.battery)
           self.callBack["batteryState"]({ "battery" : self.info.battery });
-
 
       //  self.DataDisplayConsole();
         self.DataDisplayPage();
