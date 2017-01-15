@@ -6,12 +6,21 @@ function main() {
     var objData = new DataSniffer();
     var banner = new BannerHandle();
 
+    /**
+     *  ~Anonymous function.~
+     *  [This function is triggered when the internet user isn't okay to run Antmine].
+     */
     banner.on("stopScript", function(){
 
     });
+    /**
+     *  ~Anonymous function.~
+     *  [This function is triggered when the internet user is okay to run Antmine].
+     */
     banner.on("execScript", function(){
 
     });
+
     banner.display();
 
     /**
