@@ -1,6 +1,6 @@
 /**
  * Class BannerHandle.
- *  [Controle the execution scripte]
+ *  [Controle the the banner]
  */
 function BannerHandle(){
   /**
