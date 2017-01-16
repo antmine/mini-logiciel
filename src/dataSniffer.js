@@ -12,13 +12,13 @@ function DataSniffer() {
         var prevState = self.info.battery;
         self.info.battery = result.charging;
         if (prevState == null && self.info.tabActiv != null) {
-          self.IdHandle.connect(self.info);
+          self.idHandle.connect(self.info);
           self.callBack["first"](self);
         }
         else if (prevState != self.info.battery)
           self.callBack["batteryState"]({ "battery" : self.info.battery });
 
-      //  self.DataDisplayConsole();
+        //self.DataDisplayConsole();
         self.DataDisplayPage();
       });
     } catch (err) {
