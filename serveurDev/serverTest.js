@@ -13,10 +13,6 @@ app.use('/Js', express.static('../src'));
 app.use('/unitTest', express.static('../test/unit-test'));
 
 app.get('/', function(req, res){
-  res.render('test');
-});
-
-app.get('/mini-logiciel', function(req, res){
   res.render('index');
 });
 

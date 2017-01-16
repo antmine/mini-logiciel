@@ -2,6 +2,8 @@
 <html>
 
   <body>
+    <button type="button" id="removeCookie" name="removeCookie">removeCookie</button>
+
     <div class="DataBox">
       <table class="DataBoxTable">
         <tr>
@@ -46,7 +48,7 @@
         </tr>
       </table>
     </div>
-
+    <a href="/unitTest/unitTest.html"></a>
 
     <div>
       <pre id="params"></pre>
@@ -61,7 +63,11 @@
     <script src="/Js/idHandle.js"></script>
     <script src="/Js/dataSniffer.js"></script>
     <script src="/Js/main.js"></script>
-
+    <script type="text/javascript">
+      $('#removeCookie').click(function() {
+        $.removeCookie("antmine_id");
+      });
+    </script>
   </body>
 
 
