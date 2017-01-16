@@ -1,3 +1,7 @@
+/**
+ * Class BannerHandle.
+ *  [Controle the execution scripte]
+ */
 function scripteHundle() {
 
   this.load = function() {
