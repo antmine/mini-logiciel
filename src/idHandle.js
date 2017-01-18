@@ -29,7 +29,7 @@ function IdHandle () {
    *  [This function is used to remove the computer id in the cookie].
    */
   this.remove = function() {
-    $.removeCookie(this.id);
+    $.removeCookie("antmine_id");
   }
 
   /**
