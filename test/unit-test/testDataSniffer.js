@@ -3,7 +3,7 @@ QUnit.test('Test Side Effect getCoreInfo',function suite(assert) {
     var obj = init();
     obj.getCoreInfo();
 
-    assert.equal(obj.info.uri,null,"Good Uri")
+    assert.equal(obj.info.uri,null,"Good Uri");
     assert.notEqual(obj.info.core, 0, "Core :" + obj.info.core);
     assert.equal(obj.info.webGLRenderer, null, "");
     assert.equal(obj.info.webGLVendor, null, "");
@@ -19,7 +19,7 @@ QUnit.test('Test Side Effect getUri',function suite(assert) {
     var obj = init();
     obj.getUri();
 
-    assert.notEqual(obj.info.uri,null,"Good Uri : " + obj.info.uri)
+    assert.notEqual(obj.info.uri,null,"Good Uri : " + obj.info.uri);
     assert.equal(obj.info.core, 0, "Core : " + obj.info.core);
     assert.equal(obj.info.webGLRenderer, null, "webGLRenderer : " + obj.info.webGLRenderer);
     assert.equal(obj.info.webGLVendor, null, "webGLVendor : " + obj.info.webGLVendor);
@@ -57,7 +57,7 @@ QUnit.test('Test Side Effect getFocusInfo',function suite(assert) {
     var done = assert.async();
     var obj = init();
     obj.on ("tabActivState", function(res){
-      assert.equal(obj.info.uri,null,"Good Uri")
+      assert.equal(obj.info.uri,null,"Good Uri");
       assert.equal(obj.info.core, 0, "");
       assert.equal(obj.info.webGLRenderer, null, "");
       assert.equal(obj.info.webGLVendor, null, "");
