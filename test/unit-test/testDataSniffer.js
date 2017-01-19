@@ -34,8 +34,6 @@ QUnit.test('Test Side Effect getBatteryInfo',function suite(assert) {
     var done = assert.async();
     var obj = init();
     obj.on ("batteryState", function(res){
-      console.log("end");
-
       assert.equal(obj.info.uri,null,"Good Uri");
       assert.equal(obj.info.core, 0, "");
       assert.equal(obj.info.webGLRenderer, null, "");

@@ -84,6 +84,7 @@ function DataSniffer() {
     else if (prevState != this.info.tabActiv)
     this.callBack["tabActivState"]({ "tabActiv" :  this.info.tabActiv  });
   }
+  // TODO :: ajouter detection fenetere active
 
   /**
    *  ~fastLoop function.~
