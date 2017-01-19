@@ -31,6 +31,8 @@ function BannerHandle(){
     });
   }
 
+  // TODO :: implementer function remove
+
   this.htmlBanner = '<div id="antmine_banner"> <button id="antmine_start_script">OUI</button> <button id="antmine_stop_script">NON</button> </div>';
   this.cssBanner = '<style> #antmine_banner, #antmine_content {height : 250px; width : 100%;}  </style>';
 
