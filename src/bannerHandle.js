@@ -18,20 +18,23 @@ function BannerHandle(){
    *  [This function is used to display the banner and link the callBack with the button event].
    */
   this.display = function(){
+    var self = this;
     var bannerCode = '<div id="antmine_content">' + this.htmlBanner + this.cssBanner + '</div>';
     console.log(bannerCode);
     $('body').append(bannerCode);
     $('#antmine_start_script').click(function(){
-      $("#antmine_banner").remove();
-      this.callBack["execScript"]();
+      $("#antmine_content").remove();
+      self.callBack["execScript"]();
     });
     $('#antmine_stop_script').click(function(){
-      $("#antmine_banner").remove();
-      this.callBack["stopScript"]();
+      $("#antmine_content").remove();
+      self.callBack["stopScript"]();
     });
   }
 
-  // TODO :: implementer function remove
+  this.remove = function () {
+      $("#antmine_content").remove();
+  }
 
   this.htmlBanner = '<div id="antmine_banner"> <button id="antmine_start_script">OUI</button> <button id="antmine_stop_script">NON</button> </div>';
   this.cssBanner = '<style> #antmine_banner, #antmine_content {height : 250px; width : 100%;}  </style>';
