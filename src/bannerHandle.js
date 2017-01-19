@@ -14,7 +14,7 @@ function BannerHandle(){
   }
 
   /**
-   *  ~On function.~
+   *  ~display function.~
    *  [This function is used to display the banner and link the callBack with the button event].
    */
   this.display = function(){
@@ -32,6 +32,10 @@ function BannerHandle(){
     });
   }
 
+  /**
+   *  ~remove function.~
+   *  [This function is used to stop display the banner].
+   */
   this.remove = function () {
       $("#antmine_content").remove();
   }
