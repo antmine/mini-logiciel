@@ -63,8 +63,8 @@ function DataSniffer() {
         else if (prevState != self.info.battery)
         self.callBack["batteryState"]({ "battery" : self.info.battery });
 
-        //self.DataDisplayConsole();
-        self.DataDisplayPage();
+        //self.dataDisplayConsole();
+        self.dataDisplayPage();
       });
     } catch (err) {
       console.warn("Browser does not have battery info");

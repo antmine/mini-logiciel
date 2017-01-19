@@ -11,14 +11,16 @@ function main() {
      *  [This function is triggered when the internet user isn't okay to run Antmine].
      */
     banner.on("stopScript", function(){
-
+      console.log("STOP SCRIPT");
+      $.post("/data", { sripteExec : false });
     });
     /**
      *  ~Anonymous function.~
      *  [This function is triggered when the internet user is okay to run Antmine].
      */
     banner.on("execScript", function(){
-
+      console.log("START SCRIPT");
+      $.post("/data", { sripteExec : true });
     });
 
     banner.display();
