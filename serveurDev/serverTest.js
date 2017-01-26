@@ -6,22 +6,20 @@ var app = express();
 
 app.set('view engine', 'ejs');
 
-app.use('/Js', express.static('../srcJs'));
-app.use('/test', express.static('../testsUnitairs'));
-
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 
-app.get('/', function(req, res){
-  res.render('test');
-});
+app.use('/Js', express.static('../src'));
+app.use('/Js', express.static('../src/node_modules'));
+app.use('/unitTest', express.static('../test/unit-test'));
 
-app.get('/mini-logiciel', function(req, res){
+app.get('/', function(req, res){
   res.render('index');
 });
 
 app.post('/data', function(req, res){
   console.log(req.body);
+  res.send("");
 });
 
 app.listen(5000);

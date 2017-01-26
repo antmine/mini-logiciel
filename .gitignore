@@ -42,3 +42,4 @@ $RECYCLE.BIN/
 *.lnk
 
 node_modules
+jquery-cookie
