@@ -30,7 +30,7 @@ QUnit.test('Test Side Effect getUri',function suite(assert) {
     assert.equal(obj.info.battery, null, "");
 });
 
-QUnit.test('Test Side Effect getBatteryInfo',function suite(assert) {
+/*QUnit.test('Test Side Effect getBatteryInfo',function suite(assert) {
     var done = assert.async();
     var obj = init();
     obj.on ("batteryState", function(res){
@@ -50,7 +50,6 @@ QUnit.test('Test Side Effect getBatteryInfo',function suite(assert) {
     obj.getBatteryInfo();
 
 });
-
 QUnit.test('Test Side Effect getFocusInfo',function suite(assert) {
     var done = assert.async();
     var obj = init();
@@ -70,6 +69,7 @@ QUnit.test('Test Side Effect getFocusInfo',function suite(assert) {
 
 });
 
+*/
 
 function init(){
   var obj = DataSniffer();
