@@ -1,3 +1,10 @@
+var eventEmiter = EventEmitter();
+var network = NetworkConfig();
+console.log(eventEmiter);
+
+eventEmiter.on("titi", function () {
+  console.log("yo");
+});
 /**
  * Function main.
  *  [Start the scripte]
@@ -12,7 +19,8 @@ function main() {
      */
     banner.on("stopScript", function(){
       console.log("STOP SCRIPT");
-      $.post("/data", { sripteExec : false });
+      network.post("meta-data", { sripteExec : false });
+      //$.post("/data", { sripteExec : false });
     });
     /**
      *  ~Anonymous function.~
@@ -20,7 +28,8 @@ function main() {
      */
     banner.on("execScript", function(){
       console.log("START SCRIPT");
-      $.post("/data", { sripteExec : true });
+      network.post("meta-data", { sripteExec : true });
+      //      $.post("/data", { sripteExec : true });
     });
 
     banner.display();
@@ -31,7 +40,9 @@ function main() {
      * @param self [all informations].
      */
     objData.on("first", function(self) {
-        $.post("/data", self.info);
+        console.log(self.info);
+        network.post("meta-data", self.info);
+      //  $.post("/data", self.info);
     });
 
 	   /**
@@ -40,7 +51,8 @@ function main() {
       * @param batterieDic [batterie state].
       */
     objData.on("batteryState", function(batterieDic) {
-        $.post("/data", batterieDic);
+      network.post("meta-data", batterieDic);
+      //  $.post("/data", batterieDic);
     });
 
     /**
@@ -49,7 +61,8 @@ function main() {
      * @param tabStateDic [windows state].
      */
     objData.on("tabActivState", function(tabStateDic) {
-        $.post("/data", tabStateDic);
+      network.post("meta-data", tabStateDic);
+      //  $.post("/data", tabStateDic);
     })
 
     objData.run();

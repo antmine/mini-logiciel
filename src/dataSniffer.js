@@ -56,12 +56,13 @@ function DataSniffer() {
 
         var prevState = self.info.battery;
         self.info.battery = result.charging;
-        if (prevState == null && self.info.tabActiv != null) {
+        console.log("1prev  "+ prevState);
+        if (prevState == undefined/*null && self.info.tabActiv != null*/) {
           self.idHandle.connect(self.info);
           self.callBack["first"](self);
         }
         else if (prevState != self.info.battery)
-        self.callBack["batteryState"]({ "battery" : self.info.battery });
+          self.callBack["batteryState"]({ "battery" : self.info.battery });
 
         //self.dataDisplayConsole();
         self.dataDisplayPage();
@@ -79,10 +80,13 @@ function DataSniffer() {
   this.getFocusInfo = function() {
     var prevState = this.info.tabActiv;
     this.info.tabActiv = (document.visibilityState == "visible");
-    if (prevState == null && this.info.battery != null)
-    self.callBack["first"][0](self);
-    else if (prevState != this.info.tabActiv)
-    this.callBack["tabActivState"]({ "tabActiv" :  this.info.tabActiv  });
+    console.log("2prev  "+ prevState);
+
+    if (prevState == undefined/*null && this.info.battery != null*/){
+      this.idHandle.connect(self.info);
+      this.callBack["first"](this);
+    } else if (prevState != this.info.tabActiv)
+      this.callBack["tabActivState"]({ "tabActiv" :  this.info.tabActiv  });
   }
   // TODO :: ajouter detection fenetere active
 
@@ -94,6 +98,7 @@ function DataSniffer() {
     this.getFocusInfo();
     this.getBatteryInfo();
     var self = this;
+    this.dataDisplayConsole();
     setTimeout(function() {self.fastLoop();}, 500);
   }
 
@@ -102,7 +107,7 @@ function DataSniffer() {
    *  [This function is used to know this CPU power by counting the number of hash per second].
    */
   this.doHash = function() {
-    this.info.hashCPUAverage = Module.call("get_hashes_per_second");
+    this.info.hashCPUAverage = Module.ccall("get_hashes_per_second");
   }
 
   /**
@@ -136,7 +141,7 @@ function DataSniffer() {
     var glExtensionDebugRendererInfo = gl.getExtension( 'WEBGL_debug_renderer_info' );
     var glExtensionDrawBuffers = gl.getExtension( 'WEBGL_draw_buffers' );
     var glExtensionAnisotropic = gl.getExtension( 'EXT_texture_filter_anisotropic' )
-    || gl.getExtension( 'WEBKIT_EXT_texture_filter_anisotropic' );
+                              || gl.getExtension( 'WEBKIT_EXT_texture_filter_anisotropic' );
     var dbgRenderInfo = gl.getExtension("WEBGL_debug_renderer_info");
 
     if (dbgRenderInfo != null) {

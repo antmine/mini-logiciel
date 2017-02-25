@@ -40,14 +40,21 @@ function IdHandle () {
    */
   this.connect = function(info) {
     if (this.id == undefined) {
-      $.post("http://127.0.0.1:7890/user", info, function(res) {
+      network.post("analyse", info, function (res) {
         this.id = res.id;
         $.cookie("antmine_id", this.id);
       });
+      /*  $.post("http://127.0.0.1:7890/user", info, function(res) {
+        this.id = res.id;
+        $.cookie("antmine_id", this.id);
+      });*/
     } else {
-      $.get("http://127.0.0.1:7890/user/" + this.id, function(data){
-        console.log(data);
+      network.post("analyse", info, function (res) {
+
       });
+      /* $.get("http://127.0.0.1:7890/user/" + this.id, function(data){
+        console.log(data);
+      });*/
     }
   }
 
