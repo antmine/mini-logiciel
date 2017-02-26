@@ -41,5 +41,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Component
+bower_components
 node_modules
 jquery-cookie
