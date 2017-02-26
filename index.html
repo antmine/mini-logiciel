@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+    <button type="button" id="removeCookie" name="removeCookie">removeCookie</button>
+
+    <div class="DataBox">
+      <table class="DataBoxTable">
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <th>uri :</th>
+          <th id="uriValue"> </th>
+        </tr>
+        <tr>
+          <th>core :</th>
+          <th id="coreValue"></th>
+        </tr>
+        <tr>
+          <th>webGLRenderer :</th>
+          <th id="webGLRendererValue"></th>
+        </tr>
+        <tr>
+          <th>webGLVendor :</th>
+          <th id="webGLVendorValue"></th>
+        </tr>
+        <tr>
+          <th>webGLVersion :</th>
+          <th id="webGLVersionValue"></th>
+        </tr>
+        <tr>
+          <th>webGLLanguage :</th>
+          <th id="webGLLanguageValue"></th>
+        </tr>
+        <tr>
+          <th>tabActiv :</th>
+          <th id="tabActivValue"></th>
+        </tr>
+        <tr>
+          <th>hashCPUAverage :</th>
+          <th id="hashCPUAverageValue"></th>
+        </tr>
+        <tr>
+          <th>battery :</th>
+          <th id="batteryValue"></th>
+        </tr>
+      </table>
+    </div>
+    <a href="test/unit-test/unitTest.html">test unitair</a>
+
+    <div>
+      <pre id="params"></pre>
+      <canvas width="256px" height="256px" id="gl"></canvas>
+    </div>
+
+    <br style="clear:both"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="node_modules/wolfy87-eventemitter/EventEmitter.js"></script>
+    <script src="node_modules/jquery.cookie/jquery.cookie.js"></script>
+
+    <script src="src/sha256.js"></script>
+    <script src="src/NetworkConfig.js"></script>
+    <script src="src/bannerHandle.js"></script>
+    <script src="src/idHandle.js"></script>
+    <script src="src/dataSniffer.js"></script>
+    <script src="src/main.js"></script>
+    <script type="text/javascript">
+      $('#removeCookie').click(function() {
+        $.removeCookie("antmine_id");
+      });
+    </script>
+  </body>
+
+
+</html>
