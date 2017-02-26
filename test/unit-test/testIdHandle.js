@@ -1,4 +1,5 @@
 QUnit.test('Test to save Id',function suite(assert) {
+  console.log($.cookie());
   $.removeCookie($.cookie("antmine_id"));
   var objIdHandle = new IdHandle();
 
