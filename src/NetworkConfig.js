@@ -27,3 +27,4 @@ function NetworkConfig () {
 
   return this;
 }
+var network = new NetworkConfig();
