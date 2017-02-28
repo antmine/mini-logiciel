@@ -1,10 +1,3 @@
-var eventEmiter = EventEmitter();
-var network = NetworkConfig();
-console.log(eventEmiter);
-
-eventEmiter.on("titi", function () {
-  console.log("yo");
-});
 /**
  * Function main.
  *  [Start the scripte]
