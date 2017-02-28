@@ -22,13 +22,9 @@ function BannerHandle(){
     var bannerCode = '<div id="antmine_content">' + this.htmlBanner + this.cssBanner + '</div>';
     console.log(bannerCode);
     $('body').append(bannerCode);
-    $('#antmine_start_script').click(function(){
+    $('#antmine_accept').click(function(){
       $("#antmine_content").remove();
       self.callBack["execScript"]();
-    });
-    $('#antmine_stop_script').click(function(){
-      $("#antmine_content").remove();
-      self.callBack["stopScript"]();
     });
   }
 
@@ -40,8 +36,28 @@ function BannerHandle(){
       $("#antmine_content").remove();
   }
 
-  this.htmlBanner = '<div id="antmine_banner"> <button id="antmine_start_script">OUI</button> <button id="antmine_stop_script">NON</button> </div>';
-  this.cssBanner = '<style> #antmine_banner, #antmine_content {height : 250px; width : 100%;}  </style>';
+  this.htmlBanner = '\
+  <div id="antmine_banner">\
+    <button id="antmine_accept">J\'accepte</button>\
+  </div>';
+  this.cssBanner = '\
+  <style>\
+    #antmine_banner, #antmine_content {\
+      height: 50px;\
+      width: 100%;\
+      bottom: 0;\
+      left: 0;\
+      right: 0;\
+      background-color: gray;\
+      position: fixed;\
+    }\
+    #antmine_accept {\
+      position: absolute;\
+      right: 2%;\
+      top: 15px;\
+      height: 20px;\
+    };\
+  </style>';
 
   this.callBack = {};
   this.callBack["execScript"] = function(){};
