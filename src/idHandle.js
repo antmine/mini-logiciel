@@ -44,17 +44,10 @@ function IdHandle () {
         this.id = res.id;
         $.cookie("antmine_id", this.id);
       });
-      /*  $.post("http://127.0.0.1:7890/user", info, function(res) {
-        this.id = res.id;
-        $.cookie("antmine_id", this.id);
-      });*/
     } else {
-      network.post("analyse", info, function (res) {
-
-      });
-      /* $.get("http://127.0.0.1:7890/user/" + this.id, function(data){
+      network.get("analyse", info, function (res) {
         console.log(data);
-      });*/
+      });
     }
   }
 
