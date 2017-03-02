@@ -48,6 +48,7 @@ function IdHandle () {
     } else {
       network.get("analyse", this.id, function (res) {
         console.log(res);
+        //TODO: script reception
       });
     }
   }
