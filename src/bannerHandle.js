@@ -3,15 +3,6 @@
  *  [Controle the the banner]
  */
 function BannerHandle(){
-  /**
-   *  ~On function.~
-   *  [This function is used to set the callBack].
-   * @param key [key (string)].
-   * @param callB [callBack].
-   */
-  this.on = function(key, callB) {
-    this.callBack[key] = callB;
-  }
 
   /**
    *  ~display function.~
@@ -20,11 +11,9 @@ function BannerHandle(){
   this.display = function(){
     var self = this;
     var bannerCode = '<div id="antmine_content">' + this.htmlBanner + this.cssBanner + '</div>';
-    console.log(bannerCode);
     $('body').append(bannerCode);
     $('#antmine_accept').click(function(){
-      $("#antmine_content").remove();
-      self.callBack["execScript"]();
+      self.remove();
     });
   }
 
@@ -58,10 +47,5 @@ function BannerHandle(){
       height: 20px;\
     };\
   </style>';
-
-  this.callBack = {};
-  this.callBack["execScript"] = function(){};
-  this.callBack["stopScript"] = function(){};
-
   return this;
 }
