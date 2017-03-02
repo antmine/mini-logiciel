@@ -18,6 +18,7 @@ function NetworkConfig () {
   };
 
   this.get = function (server, data, callBack) {
+    console.log(this.servers[server].url() + data);
     $.get(this.servers[server].url() + data, callBack);
   };
 
@@ -27,4 +28,3 @@ function NetworkConfig () {
 
   return this;
 }
-var network = new NetworkConfig();
