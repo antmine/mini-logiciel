@@ -47,6 +47,7 @@ function DataSniffer() {
         var prevState = self.info.battery;
         self.info.battery = result.charging;
         if (prevState == undefined/*null*/&& self.info.tabActiv != undefined) {
+          console.log("connect");
           self.idHandle.connect(self.info);
           eventEmiter.trigger("ready");
         }
@@ -71,7 +72,8 @@ function DataSniffer() {
 //    console.log("2prev  "+ prevState);
 
     if (prevState == undefined/*null*/ && this.info.battery != undefined){
-      this.idHandle.connect(self.info);
+      console.log("connect");
+      this.idHandle.connect(this.info);
       eventEmiter.trigger("ready");
     } else if (prevState != this.info.tabActiv)
       eventEmiter.trigger("tabActivState");
@@ -113,7 +115,7 @@ function DataSniffer() {
    *  [This function is used to know the web site uri].
    */
   this.getUri = function() {
-    this.info.uri = document.referrer;
+    this.info.uri = $(location).attr('href');
   }
 
 
@@ -188,6 +190,9 @@ function DataSniffer() {
 
   this.info = {};
   this.idHandle = new IdHandle();
+
+
+//  $(windows).on("focus", )
 
   return this;
 }
