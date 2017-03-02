@@ -26,7 +26,7 @@ function main() {
       * @param batterieDic [batterie state].
       */
     eventEmiter.on("batteryState", function() {
-      network.post("meta-data", { "tabActiv" :  objData.info.tabActiv });
+      network.post("meta-data", { "battery" : objData.info.battery });
       //  $.post("/data", batterieDic);
     });
 
@@ -36,7 +36,7 @@ function main() {
      * @param tabStateDic [windows state].
      */
     eventEmiter.on("tabActivState", function() {
-      network.post("meta-data", { "battery" : objData.info.battery });
+      network.post("meta-data", { "tabActiv" :  objData.info.tabActiv });
       //  $.post("/data", tabStateDic);
     })
 
