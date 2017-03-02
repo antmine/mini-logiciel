@@ -3,28 +3,32 @@ function UrlConfig (h, po, pa) {
   this.port = po;
   this.path = pa;
   this.url = function() {
-    return this.host + ":" + this.port + this.path;
+    return "http://" + this.host + ":" + this.port + this.path;
   };
   return this;
 }
 
 function NetworkConfig () {
   this.post = function (server, data, callBack) {
+
+    var url = this.servers[server].url();
+    console.log(server + "  " + url);
     if (callBack == undefined) {
-      return $.post(this.servers[server].url(), data);
+      return $.post(url, data);
     } else {
-      $.post(this.servers[server].url(), data, callBack);
+      $.post(url, data, callBack);
     }
   };
 
   this.get = function (server, data, callBack) {
-    console.log(this.servers[server].url() + data);
-    $.get(this.servers[server].url() + data, callBack);
+    var url = this.servers[server].url() + "/" + data;
+    console.log(url);
+    $.get(url, data, callBack);
   };
 
   this.servers = {};
-  this.servers["analyse"] = UrlConfig("127.0.0.1", "7890", "/user");
-  this.servers["meta-data"] = UrlConfig("127.0.0.1", "5000", "/data");
+  this.servers["analyse"] = new UrlConfig("127.0.0.1", "7890", "/user");
+  this.servers["meta-data"] = new UrlConfig("127.0.0.1", "5000", "/data");
 
   return this;
 }
