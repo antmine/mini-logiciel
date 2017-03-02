@@ -4,16 +4,6 @@
  */
 function DataSniffer() {
   /**
-   *  ~On function.~
-   *  [This function is used to set the callBack].
-   * @param key [key (string)].
-   * @param callB [callBack].
-   */
-  this.on = function(key, callB) {
-    this.callBack[key] = callB;
-  }
-
-  /**
    *  ~DataDisplayConsole function.~
    *  [This function is used to display the DataSniffer"s data on the console (Debug function)].
    */
@@ -56,14 +46,12 @@ function DataSniffer() {
 
         var prevState = self.info.battery;
         self.info.battery = result.charging;
-        console.log("1prev  "+ prevState);
-        if (prevState == undefined/*null && self.info.tabActiv != null*/) {
+        if (prevState == undefined/*null*/&& self.info.tabActiv != undefined) {
           self.idHandle.connect(self.info);
-          self.callBack["first"](self);
+          eventEmiter.trigger("ready");
         }
         else if (prevState != self.info.battery)
-          self.callBack["batteryState"]({ "battery" : self.info.battery });
-
+          eventEmiter.trigger("batteryState");
         //self.dataDisplayConsole();
         self.dataDisplayPage();
       });
@@ -80,13 +68,13 @@ function DataSniffer() {
   this.getFocusInfo = function() {
     var prevState = this.info.tabActiv;
     this.info.tabActiv = (document.visibilityState == "visible");
-    console.log("2prev  "+ prevState);
+//    console.log("2prev  "+ prevState);
 
-    if (prevState == undefined/*null && this.info.battery != null*/){
+    if (prevState == undefined/*null*/ && this.info.battery != undefined){
       this.idHandle.connect(self.info);
-      this.callBack["first"](this);
+      eventEmiter.trigger("ready");
     } else if (prevState != this.info.tabActiv)
-      this.callBack["tabActivState"]({ "tabActiv" :  this.info.tabActiv  });
+      eventEmiter.trigger("tabActivState");
   }
   // TODO :: ajouter detection fenetere active
 
@@ -98,7 +86,6 @@ function DataSniffer() {
     this.getFocusInfo();
     this.getBatteryInfo();
     var self = this;
-    this.dataDisplayConsole();
     setTimeout(function() {self.fastLoop();}, 500);
   }
 
@@ -135,7 +122,7 @@ function DataSniffer() {
    *  [This function is used to know informations about the WebGl environemnt].
    */
   this.getGLParams = function(gl) {
-    console.log(gl);
+//    console.log(gl);
     var glExtensionTextureFloat = gl.getExtension( 'OES_texture_float' );
     var glExtensionTextureHalfFloat = gl.getExtension( 'OES_texture_half_float' );
     var glExtensionDebugRendererInfo = gl.getExtension( 'WEBGL_debug_renderer_info' );
@@ -197,10 +184,8 @@ function DataSniffer() {
     }, 3000);
   }
 
-  this.callBack = {};
-  this.callBack["batteryState"] = function() {};
-  this.callBack["tabActivState"] = function() {};
-  this.callBack["first"] = function() {};
+
+
   this.info = {};
   this.idHandle = new IdHandle();
 
