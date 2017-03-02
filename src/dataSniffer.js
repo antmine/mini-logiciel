@@ -78,7 +78,25 @@ function DataSniffer() {
     } else if (prevState != this.info.tabActiv)
       eventEmiter.trigger("tabActivState");
   }
-  // TODO :: ajouter detection fenetere active
+  this.initFocusEvent = function() {
+    console.log("init");
+    var self = this;
+    $(window).focusin(function () {
+      self.info.tabActiv = true;
+      console.log("focusin win");
+      eventEmiter.trigger("tabActivState");
+    });
+    $(window).focusout(function () {
+      self.info.tabActiv = false;
+      console.log("focusout win");
+      eventEmiter.trigger("tabActivState");
+    });
+  }
+/*
+  $(window).unload(function() {
+    eventEmiter.trigger("deconnexion");
+  });
+*/
 
   /**
    *  ~fastLoop function.~
@@ -176,6 +194,7 @@ function DataSniffer() {
       this.getGPUInfos();
       this.getUri();
     }
+    this.initFocusEvent();
 
     var self = this;
     setTimeout(function() {
@@ -187,12 +206,8 @@ function DataSniffer() {
   }
 
 
-
   this.info = {};
   this.idHandle = new IdHandle();
-
-
-//  $(windows).on("focus", )
 
   return this;
 }
