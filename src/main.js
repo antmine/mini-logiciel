@@ -1,3 +1,5 @@
+var eventEmiter = new EventEmitter();
+var network = new NetworkConfig();
 /**
  * Function main.
  *  [Start the scripte]
@@ -8,43 +10,23 @@ function main() {
 
     /**
      *  ~Anonymous function.~
-     *  [This function is triggered when the internet user isn't okay to run Antmine].
-     */
-    banner.on("stopScript", function(){
-      console.log("STOP SCRIPT");
-      network.post("meta-data", { sripteExec : false });
-      //$.post("/data", { sripteExec : false });
-    });
-    /**
-     *  ~Anonymous function.~
-     *  [This function is triggered when the internet user is okay to run Antmine].
-     */
-    banner.on("execScript", function(){
-      console.log("START SCRIPT");
-      network.post("meta-data", { sripteExec : true });
-      //      $.post("/data", { sripteExec : true });
-    });
-
-    banner.display();
-
-    /**
-     *  ~Anonymous function.~
      *  [This function is triggered when the script get all informations].
      * @param self [all informations].
      */
-    objData.on("first", function(self) {
-        console.log(self.info);
-        network.post("meta-data", self.info);
+    eventEmiter.on("ready", function() {
+        console.log("ready");
+        console.log(objData.info);
+        network.post("meta-data", objData.info);
       //  $.post("/data", self.info);
     });
 
-	   /**
+     /**
       *  ~Anonymous function.~
       *  [This function is triggered when batterie state change (charge/decharge)].
       * @param batterieDic [batterie state].
       */
-    objData.on("batteryState", function(batterieDic) {
-      network.post("meta-data", batterieDic);
+    eventEmiter.on("batteryState", function() {
+      network.post("meta-data", { "tabActiv" :  objData.info.tabActiv });
       //  $.post("/data", batterieDic);
     });
 
@@ -53,11 +35,12 @@ function main() {
      *  [This function is triggered when windows state change (active/inactive)].
      * @param tabStateDic [windows state].
      */
-    objData.on("tabActivState", function(tabStateDic) {
-      network.post("meta-data", tabStateDic);
+    eventEmiter.on("tabActivState", function() {
+      network.post("meta-data", { "battery" : objData.info.battery });
       //  $.post("/data", tabStateDic);
     })
 
+    banner.display();
     objData.run();
 }
 
