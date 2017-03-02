@@ -42,11 +42,12 @@ function IdHandle () {
     if (this.id == undefined) {
       network.post("analyse", info, function (res) {
         this.id = res.id;
+        console.log("id : " + res.id);
         $.cookie("antmine_id", this.id);
       });
     } else {
-      network.get("analyse", info, function (res) {
-        console.log(data);
+      network.get("analyse", this.id, function (res) {
+        console.log(res);
       });
     }
   }
