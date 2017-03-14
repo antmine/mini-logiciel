@@ -28,7 +28,7 @@ QUnit.test('Test if the displayed banner desepear',function suite(assert) {
   if ($('#antmine_content').length > 0)
     $("#antmine_content").remove();
 });
-
+/*
 QUnit.test('Test if the callBack (when the internet user accept antmine) works ',function suite(assert) {
   if ($('#antmine_content').length > 0)
     $("#antmine_content").remove();
@@ -65,7 +65,7 @@ QUnit.test('Test if the callBack (when the internet user don\'t accepte antmine)
   assert.equal($('#antmine_content').length, 1, "");
   $("#antmine_stop_script").trigger( "click" );
 });
-
+*/
 /*
 QUnit.test('Test if the callBack (when the internet user accept antmine) works ',function suite(assert) {
   $("#antmine_banner").remove();
