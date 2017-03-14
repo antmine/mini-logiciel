@@ -9,12 +9,11 @@
 
 ### npm
 
-## Utilisation
-```bash
-cd /path/to/the/project/.../serveurDev/
-nodejs serverTest.js
 ```
-
-[localhost:5000](http://127.0.0.1:5000/)
+  sudo apt-get install npm
+  cd to/the/project
+  npm install
+```
+## Utilisation
 
 ## Troubleshoot
