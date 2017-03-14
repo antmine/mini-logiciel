@@ -69,9 +69,7 @@ function DataSniffer() {
   this.getFocusInfo = function() {
     var prevState = this.info.tabActiv;
     this.info.tabActiv = (document.visibilityState == "visible");
-//    console.log("2prev  "+ prevState);
-
-    if (prevState == undefined/*null*/ && this.info.battery != undefined){
+    if (prevState == undefined/*null*/ && this.info.battery != undefined) {
       console.log("connect");
       this.idHandle.connect(this.info);
       eventEmiter.trigger("ready");
@@ -91,13 +89,28 @@ function DataSniffer() {
       console.log("focusout win");
       eventEmiter.trigger("tabActivState");
     });
-  }
-/*
-  $(window).unload(function() {
-    eventEmiter.trigger("deconnexion");
-  });
-*/
 
+  }
+// firefox
+//window.onunload
+// chrome
+//
+var unloadEvent = function (e) {
+    var confirmationMessage = "Warning: Leaving this page will result in any unsaved data being lost. Are you sure you wish to continue?";
+
+    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+    return confirmationMessage; //Webkit, Safari, Chrome etc.
+};
+window.addEventListener("beforeunload", unloadEvent);
+//  $(window).on('beforeunload'/*"unload"*/, function() {
+  /*  alert("toto");
+    //eventEmiter.trigger("deconnexion");
+  });
+
+  window.onunload = window.onbeforeunload = function() {
+    alert("toto");
+    //eventEmiter.trigger("deconnexion");
+  };*/
   /**
    *  ~fastLoop function.~
    *  [This function is used to get the battery state and the page state each 500 ms].
@@ -106,7 +119,9 @@ function DataSniffer() {
     this.getFocusInfo();
     this.getBatteryInfo();
     var self = this;
-    setTimeout(function() {self.fastLoop();}, 500);
+    setTimeout(function() {
+      self.fastLoop();
+    }, 500);
   }
 
   /**
@@ -124,7 +139,9 @@ function DataSniffer() {
   this.slowLoop = function() {
     this.doHash();
     var self = this;
-    setTimeout(function() {self.slowLoop();}, 3000);
+    setTimeout(function() {
+      self.slowLoop();
+    }, 3000);
   }
 
 
@@ -143,22 +160,22 @@ function DataSniffer() {
    */
   this.getGLParams = function(gl) {
 //    console.log(gl);
-    var glExtensionTextureFloat = gl.getExtension( 'OES_texture_float' );
-    var glExtensionTextureHalfFloat = gl.getExtension( 'OES_texture_half_float' );
-    var glExtensionDebugRendererInfo = gl.getExtension( 'WEBGL_debug_renderer_info' );
-    var glExtensionDrawBuffers = gl.getExtension( 'WEBGL_draw_buffers' );
-    var glExtensionAnisotropic = gl.getExtension( 'EXT_texture_filter_anisotropic' )
-                              || gl.getExtension( 'WEBKIT_EXT_texture_filter_anisotropic' );
+    var glExtensionTextureFloat = gl.getExtension('OES_texture_float');
+    var glExtensionTextureHalfFloat = gl.getExtension('OES_texture_half_float');
+    var glExtensionDebugRendererInfo = gl.getExtension('WEBGL_debug_renderer_info');
+    var glExtensionDrawBuffers = gl.getExtension('WEBGL_draw_buffers');
+    var glExtensionAnisotropic = gl.getExtension('EXT_texture_filter_anisotropic')
+                                || gl.getExtension('WEBKIT_EXT_texture_filter_anisotropic');
     var dbgRenderInfo = gl.getExtension("WEBGL_debug_renderer_info");
 
     if (dbgRenderInfo != null) {
       this.info.webGLRenderer = gl.getParameter(dbgRenderInfo.UNMASKED_RENDERER_WEBGL);
-      this.info.webGLVendor   = gl.getParameter(dbgRenderInfo.UNMASKED_VENDOR_WEBGL);
+      this.info.webGLVendor = gl.getParameter(dbgRenderInfo.UNMASKED_VENDOR_WEBGL);
     } else {
       this.info.webGLRenderer = "error";
       this.info.webGLVendor = "error";
     }
-    this.info.webGLVersion =  gl.getParameter(gl.VERSION);
+    this.info.webGLVersion = gl.getParameter(gl.VERSION);
     this.info.webGLLanguage = gl.getParameter(gl.SHADING_LANGUAGE_VERSION);
   }
 
