@@ -2,17 +2,17 @@
  * Class BannerHandle.
  *  [Controle the the banner]
  */
-function BannerHandle(){
+function BannerHandle() {
 
   /**
    *  ~display function.~
    *  [This function is used to display the banner and link the callBack with the button event].
    */
-  this.display = function(){
+  this.display = function() {
     var self = this;
     var bannerCode = '<div id="antmine_content">' + this.htmlBanner + this.cssBanner + '</div>';
     $('body').append(bannerCode);
-    $('#antmine_accept').click(function(){
+    $('#antmine_accept').click(function() {
       self.remove();
     });
   }
@@ -22,13 +22,14 @@ function BannerHandle(){
    *  [This function is used to stop display the banner].
    */
   this.remove = function () {
-      $("#antmine_content").remove();
+    $("#antmine_content").remove();
   }
 
   this.htmlBanner = '\
   <div id="antmine_banner">\
     <button id="antmine_accept">J\'accepte</button>\
   </div>';
+
   this.cssBanner = '\
   <style>\
     #antmine_banner, #antmine_content {\
@@ -47,5 +48,6 @@ function BannerHandle(){
       height: 20px;\
     };\
   </style>';
+
   return this;
 }
