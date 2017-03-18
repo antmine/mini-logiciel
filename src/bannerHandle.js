@@ -17,11 +17,20 @@ function BannerHandle() {
     });
   }
 
+  /**
+   *  ~ function.~
+   *  [This function is used to add line in the hash tab].
+   * @param info [tab state (true/false)];
+   */
   this.dataDisplayDebugInfo = function(info) {
-    for (var key in info) {
-      var str = '<tr><th>' + key +'</th><th>'+ info[key]+'</th></tr>';
-      $('#antmine_tab_info').append(str);
-    }
+    var str;
+    str = '<tr><th>uriValue</th><th>'+info["uri"]+'</th></tr>';
+    str += '<tr><th>coreValue</th><th>'+info["core"]+'</th></tr>';
+    str += '<tr><th>webGLRendererValue</th><th>'+info["webGLRenderer"]+'</th></tr>';
+    str += '<tr><th>webGLVendorValue</th><th>'+info["webGLVendor"]+'</th></tr>';
+    str += '<tr><th>webGLVersionValue</th><th>'+info["webGLVersion"]+'</th></tr>';
+    str += '<tr><th>webGLLanguageValue</th><th>'+info["webGLLanguage"]+'</th></tr>';
+    $('#antmine_tab_info').append(str);
   }
 
   this.initDebugInfo = function (info) {
@@ -56,6 +65,11 @@ function BannerHandle() {
      $("#antmine_box_hash").addClass("antmine_box_active");
    });
   }
+  /**
+   *  ~pushTabAtivity function.~
+   *  [This function is used to add line in the tabState tab].
+   * @param info [tab state (true/false)];
+   */
   this.pushTabAtivity = function(info) {
     str = '\
     <tr>\
@@ -64,6 +78,11 @@ function BannerHandle() {
     </tr>';
     $('#antmine_col_tab').append(str);
   }
+  /**
+   *  ~pushHash function.~
+   *  [This function is used to add line in the batterie tab].
+   * @param info [batterie state];
+   */
   this.pushBatterieAtivity = function(info) {
     str = '\
     <tr>\
@@ -72,6 +91,11 @@ function BannerHandle() {
     </tr>';
     $('#antmine_col_batterie').append(str);
   }
+  /**
+   *  ~pushHash function.~
+   *  [This function is used to add line in the hash tab].
+   * @param info [hash per seconds];
+   */
   this.pushHash = function(info) {
     str = '\
     <tr>\
@@ -110,12 +134,25 @@ function BannerHandle() {
       </div>\
       <div id="antmine_box_activity" class="antmine_box">\
         <table id="antmine_tab_activity"> \
-          <th id="antmine_col_tab">\
-            <tr>tab Active</tr>\
-          </th>\
-          <th id="antmine_col_batterie">\
-            <tr>battery</tr>\
-          </th>\
+          <tr>\
+            <th>battery</th><th>tabActiv</th>\
+          </tr>\
+          <tr>\
+            <td>\
+              <table id="antmine_col_tab">\
+                <tr>\
+                  <th>date</th><th>value</th>\
+                </tr>\
+              </table>\
+            </td>\
+            <td>\
+              <table id="antmine_col_batterie">\
+                <tr>\
+                  <th>date</th><th>value</th>\
+                </tr>\
+              </table>\
+            </td>\
+          </tr>\
         </table>\
       </div>\
       <div id="antmine_box_hash" class="antmine_box">\

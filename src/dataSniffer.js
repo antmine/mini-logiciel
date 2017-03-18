@@ -130,6 +130,7 @@ window.addEventListener("beforeunload", unloadEvent);
    */
   this.doHash = function() {
     this.info.hashCPUAverage = Module.ccall("get_hashes_per_second");
+    eventEmiter.trigger("GPUhash");
   }
 
   /**

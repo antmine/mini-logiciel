@@ -19,11 +19,15 @@ function main() {
         network.post("meta-data", objData.info);
         banner.display();
         banner.initDebugInfo(objData.info)
-        banner.pushHash(objData.info.hash);
         banner.pushBatterieAtivity(objData.info.battery);
         banner.pushTabAtivity(objData.info.tabActiv);
 
       //  $.post("/data", self.info);
+    });
+
+
+    eventEmiter.on("GPUhash", function() {
+      banner.pushHash(objData.info.hashCPUAverage);
     });
 
      /**
