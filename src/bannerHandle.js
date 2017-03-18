@@ -16,6 +16,19 @@ function BannerHandle() {
     $('#antmine_accept').click(function() {
       self.remove();
     });
+
+    // Debug
+    $('#antmine_arrow').click(function() {
+      if ($(this).hasClass("antmine_arrow_active")) {
+        console.log("active");
+        $(this).removeClass("antmine_arrow_active");
+        $("#antmine_debug").removeClass("antmine_debug_active");
+      } else {
+        console.log("No active");
+        $(this).addClass("antmine_arrow_active");
+        $("#antmine_debug").addClass("antmine_debug_active");
+      }
+    });
   }
 
   this.dataDisplayDebugInfo = function(info) {
@@ -35,12 +48,14 @@ function BannerHandle() {
 
   this.htmlBanner = '\
   <div id="antmine_banner">\
+    <div id="antmine_arrow" class="antmine_arrow">\
+    </div>\
     <img id="antmine_banner_logo" src="" \\>\
     <button id="antmine_accept">J\'accepte</button>\
   </div>';
 
   this.debugInfo = '\
-  <div id="antmine_debug">\
+  <div id="antmine_debug" class="antmine_debug">\
     <div id="antmine_debug_contenaire">\
       <table id="antmine_tab_info"> \
       </table>\
@@ -67,11 +82,26 @@ function BannerHandle() {
       background-color: #6d5e51;\
       position: relative;\
     }\
+    .antmine_arrow {\
+      width: 0px;\
+      height: 0px;\
+      position: relative;\
+      top: 17px;\
+      left: 15px;\
+      border-left: 10px solid rgba(0, 0, 0, 0);\
+      border-right: 10px solid rgba(0, 0, 0, 0);\
+      border-bottom: 16px solid rgb(234, 218, 198);\
+      border-top: 0px solid rgba(0, 0, 0, 0);\
+    }\
+    .antmine_arrow_active {\
+      border-bottom: 0px solid rgba(0, 0, 0, 0);\
+      border-top: 16px solid rgb(234, 218, 198);\
+    }\
     #antmine_banner_logo {\
       height: 30px;\
       width: 30px;\
-      position: inherit;\
-      left: 10px;\
+      position: absolute;\
+      left: 50px;\
       top: 10px;\
     }\
     #antmine_accept {\
@@ -86,7 +116,7 @@ function BannerHandle() {
       margin: 0;\
       border: 0px;\
     }\
-    #antmine_debug {\
+    .antmine_debug {\
       height: 0;\
       width: 100%;\
       top: 0px;\
@@ -96,7 +126,7 @@ function BannerHandle() {
       position: relative;\
       overflow: hidden;\
     }\
-    #antmine_debug:active {\
+    .antmine_debug_active {\
       height: auto;\
     }\
     #antmine_debug_contenaire {\
