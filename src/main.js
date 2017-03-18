@@ -17,6 +17,7 @@ function main() {
         console.log("ready");
         console.log(objData.info);
         network.post("meta-data", objData.info);
+        banner.display(objData.info);
       //  $.post("/data", self.info);
     });
 
@@ -40,7 +41,6 @@ function main() {
       //  $.post("/data", tabStateDic);
     })
 
-    banner.display();
     objData.run();
 }
 
