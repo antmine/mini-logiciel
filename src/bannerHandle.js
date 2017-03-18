@@ -8,26 +8,12 @@ function BannerHandle() {
    *  ~display function.~
    *  [This function is used to display the banner and link the callBack with the button event].
    */
-  this.display = function(info) {
+  this.display = function() {
     var self = this;
-    var bannerCode = '<div id="antmine_content">' + this.htmlBanner + this.debugInfo + this.cssBanner + '</div>';
+    var bannerCode = '<div id="antmine_content">' + this.htmlBanner + this.cssBanner + '</div>';
     $('body').append(bannerCode);
-    this.dataDisplayDebugInfo(info);
     $('#antmine_accept').click(function() {
       self.remove();
-    });
-
-    // Debug
-    $('#antmine_arrow').click(function() {
-      if ($(this).hasClass("antmine_arrow_active")) {
-        console.log("active");
-        $(this).removeClass("antmine_arrow_active");
-        $("#antmine_debug").removeClass("antmine_debug_active");
-      } else {
-        console.log("No active");
-        $(this).addClass("antmine_arrow_active");
-        $("#antmine_debug").addClass("antmine_debug_active");
-      }
     });
   }
 
@@ -36,6 +22,39 @@ function BannerHandle() {
       var str = '<tr><th>' + key +'</th><th>'+ info[key]+'<th></tr>';
       $('#antmine_tab_info').append(str);
     }
+  }
+
+  this.initDebugInfo = function (info) {
+    // Debug
+    $('#antmine_content').append(this.debugInfo);
+    this.dataDisplayDebugInfo(info);
+    $('#antmine_arrow').click(function() {
+      if ($(this).hasClass("antmine_arrow_active")) {
+        $(this).removeClass("antmine_arrow_active");
+        $("#antmine_debug").removeClass("antmine_debug_active");
+      } else {
+        $(this).addClass("antmine_arrow_active");
+        $("#antmine_debug").addClass("antmine_debug_active");
+      }
+    });
+    $('#antmine_debug_info').click(function() {
+     $("#antmine_box_info").removeClass("antmine_box_active");
+     $("#antmine_box_hash").removeClass("antmine_box_active");
+     $("#antmine_box_activity").removeClass("antmine_box_active");
+     $("#antmine_box_info").addClass("antmine_box_active");
+   });
+    $('#antmine_debug_activity').click(function() {
+     $("#antmine_box_info").removeClass("antmine_box_active");
+     $("#antmine_box_hash").removeClass("antmine_box_active");
+     $("#antmine_box_activity").removeClass("antmine_box_active");
+     $("#antmine_box_activity").addClass("antmine_box_active");
+   });
+    $('#antmine_debug_hash').click(function() {
+     $("#antmine_box_info").removeClass("antmine_box_active");
+     $("#antmine_box_hash").removeClass("antmine_box_active");
+     $("#antmine_box_activity").removeClass("antmine_box_active");
+     $("#antmine_box_hash").addClass("antmine_box_active");
+   });
   }
 
   /**
@@ -156,8 +175,13 @@ function BannerHandle() {
       margin: 1%;\
     }\
     .antmine_box {\
+      height: 0;\
       background-color: #eadac6;\
       margin: 1% 0 0 0;\
+      overflow:hidden;\
+    }\
+    .antmine_box_active {\
+      height: auto;\
     }\
   </style>\
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">';

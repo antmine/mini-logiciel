@@ -17,7 +17,8 @@ function main() {
         console.log("ready");
         console.log(objData.info);
         network.post("meta-data", objData.info);
-        banner.display(objData.info);
+        banner.display();
+        banner.initDebugInfo(objData.info)
       //  $.post("/data", self.info);
     });
 
