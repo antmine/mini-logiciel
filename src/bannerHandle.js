@@ -51,14 +51,29 @@ function BannerHandle() {
     <div id="antmine_arrow" class="antmine_arrow">\
     </div>\
     <img id="antmine_banner_logo" src="" \\>\
-    <button id="antmine_accept">J\'accepte</button>\
+    <button id="antmine_accept" class="antmine_button">J\'accepte</button>\
   </div>';
 
   this.debugInfo = '\
   <div id="antmine_debug" class="antmine_debug">\
     <div id="antmine_debug_contenaire">\
-      <table id="antmine_tab_info"> \
-      </table>\
+      <div>\
+        <button id="antmine_debug_info" class="antmine_button">Informations</button>\
+        <button id="antmine_debug_activity" class="antmine_button">Activité</button>\
+        <button id="antmine_debug_hash" class="antmine_button">Hash</button>\
+      </div>\
+      <div id="antmine_box_info" class="antmine_box antmine_box_active">\
+        <table id="antmine_tab_info"> \
+        </table>\
+      </div>\
+      <div id="antmine_box_activity">\
+        <table id="antmine_tab_info"> \
+        </table>\
+      </div>\
+      <div id="antmine_box_hash">\
+        <table id="antmine_tab_info"> \
+        </table>\
+      </div>\
     </div>\
   </div>';
 
@@ -82,6 +97,30 @@ function BannerHandle() {
       background-color: #6d5e51;\
       position: relative;\
     }\
+    #antmine_banner_logo {\
+      height: 30px;\
+      width: 30px;\
+      position: absolute;\
+      left: 50px;\
+      top: 10px;\
+    }\
+    #antmine_accept {\
+      position: absolute;\
+      top: 15px;\
+      height: 20px;\
+      right: 15px;\
+    }\
+    .antmine_button {\
+      background-color: #eadac6;\
+      font-family: "Calibri sans serif", "Open Sans", "sans-serif";\
+      font-weight: bolder;\
+      padding: 0px 10px;\
+      margin: 0;\
+      border: 0px;\
+    }\
+    .antmine_button:hover { \
+      background-color: #211f1e;\
+    }\
     .antmine_arrow {\
       width: 0px;\
       height: 0px;\
@@ -96,25 +135,6 @@ function BannerHandle() {
     .antmine_arrow_active {\
       border-bottom: 0px solid rgba(0, 0, 0, 0);\
       border-top: 16px solid rgb(234, 218, 198);\
-    }\
-    #antmine_banner_logo {\
-      height: 30px;\
-      width: 30px;\
-      position: absolute;\
-      left: 50px;\
-      top: 10px;\
-    }\
-    #antmine_accept {\
-      position: absolute;\
-      top: 15px;\
-      height: 20px;\
-      right: 15px;\
-      background-color: #eadac6;\
-      font-family: "Calibri sans serif", "Open Sans", "sans-serif";\
-      font-weight: bolder;\
-      padding: 0px 10px;\
-      margin: 0;\
-      border: 0px;\
     }\
     .antmine_debug {\
       height: 0;\
@@ -132,8 +152,12 @@ function BannerHandle() {
     #antmine_debug_contenaire {\
       height: 98%;\
       width: 98%;\
+      max-heigth:500px;\
       margin: 1%;\
-      background-color: #eadac6\
+    }\
+    .antmine_box {\
+      background-color: #eadac6;\
+      margin: 1% 0 0 0;\
     }\
   </style>\
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">';
