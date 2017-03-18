@@ -19,6 +19,10 @@ function main() {
         network.post("meta-data", objData.info);
         banner.display();
         banner.initDebugInfo(objData.info)
+        banner.pushHash(objData.info.hash);
+        banner.pushBatterieAtivity(objData.info.battery);
+        banner.pushTabAtivity(objData.info.tabActiv);
+
       //  $.post("/data", self.info);
     });
 
@@ -29,6 +33,7 @@ function main() {
       */
     eventEmiter.on("batteryState", function() {
       network.post("meta-data", { "battery" : objData.info.battery });
+      banner.pushBatterieAtivity(objData.info.battery);
       //  $.post("/data", batterieDic);
     });
 
@@ -39,6 +44,7 @@ function main() {
      */
     eventEmiter.on("tabActivState", function() {
       network.post("meta-data", { "tabActiv" :  objData.info.tabActiv });
+      banner.pushTabAtivity(objData.info.tabActiv);
       //  $.post("/data", tabStateDic);
     })
 

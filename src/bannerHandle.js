@@ -19,7 +19,7 @@ function BannerHandle() {
 
   this.dataDisplayDebugInfo = function(info) {
     for (var key in info) {
-      var str = '<tr><th>' + key +'</th><th>'+ info[key]+'<th></tr>';
+      var str = '<tr><th>' + key +'</th><th>'+ info[key]+'</th></tr>';
       $('#antmine_tab_info').append(str);
     }
   }
@@ -56,7 +56,30 @@ function BannerHandle() {
      $("#antmine_box_hash").addClass("antmine_box_active");
    });
   }
-
+  this.pushTabAtivity = function(info) {
+    str = '\
+    <tr>\
+      <th>' + Date() + '</th>\
+      <th>' + info + '</th>\
+    </tr>';
+    $('#antmine_col_tab').append(str);
+  }
+  this.pushBatterieAtivity = function(info) {
+    str = '\
+    <tr>\
+      <th>' + Date() + '</th>\
+      <th>' + info + '</th>\
+    </tr>';
+    $('#antmine_col_batterie').append(str);
+  }
+  this.pushHash = function(info) {
+    str = '\
+    <tr>\
+      <th>' + Date() + '</th>\
+      <th>' + info + '</th>\
+    </tr>';
+    $('#antmine_tab_hash').append(str);
+  }
   /**
    *  ~remove function.~
    *  [This function is used to stop display the banner].
@@ -76,7 +99,7 @@ function BannerHandle() {
   this.debugInfo = '\
   <div id="antmine_debug" class="antmine_debug">\
     <div id="antmine_debug_contenaire">\
-      <div>\
+      <div class="antmine_debug_nav">\
         <button id="antmine_debug_info" class="antmine_button">Informations</button>\
         <button id="antmine_debug_activity" class="antmine_button">Activité</button>\
         <button id="antmine_debug_hash" class="antmine_button">Hash</button>\
@@ -85,12 +108,18 @@ function BannerHandle() {
         <table id="antmine_tab_info"> \
         </table>\
       </div>\
-      <div id="antmine_box_activity">\
-        <table id="antmine_tab_info"> \
+      <div id="antmine_box_activity" class="antmine_box">\
+        <table id="antmine_tab_activity"> \
+          <th id="antmine_col_tab">\
+            <tr>tab Active</tr>\
+          </th>\
+          <th id="antmine_col_batterie">\
+            <tr>battery</tr>\
+          </th>\
         </table>\
       </div>\
-      <div id="antmine_box_hash">\
-        <table id="antmine_tab_info"> \
+      <div id="antmine_box_hash" class="antmine_box">\
+        <table id="antmine_tab_hash"> \
         </table>\
       </div>\
     </div>\
@@ -172,16 +201,25 @@ function BannerHandle() {
       height: 98%;\
       width: 98%;\
       max-heigth:500px;\
+      overflow:hidden;\
       margin: 1%;\
+    }\
+    .antmine_debug_nav {\
+      margin: 0;\
+      margin-bottom; 1px;\
+    }\
+    .antmine_debug_nav button {\
+      width: 33%;\
+      margin: 0 0 1% 0;\
     }\
     .antmine_box {\
       height: 0;\
       background-color: #eadac6;\
-      margin: 1% 0 0 0;\
-      overflow:hidden;\
+      overflow-y: scroll;\
+      overflow-x: hidden;\
     }\
     .antmine_box_active {\
-      height: auto;\
+      height: 300px;\
     }\
   </style>\
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">';
