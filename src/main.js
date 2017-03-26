@@ -16,11 +16,10 @@ function main() {
    */
   eventEmiter.on("ready", function() {
     objData.idHandle.connect(self.info);
-    network.post("meta-data", objData.info);
     banner.display();
     banner.initDebugInfo(objData.info)
-    banner.pushBatterieAtivity(objData.info.battery);
-    banner.pushTabAtivity(objData.info.tabActiv);
+    banner.pushBatterieAtivity(objExtEvent.info.battery);
+    banner.pushTabAtivity(objExtEvent.info.tabActiv);
   });
 
 
