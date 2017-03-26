@@ -11,8 +11,7 @@ function main() {
 
   /**
    *  ~Anonymous function.~
-   *  [This function is triggered when the script get all informations].
-   * @param self [all informations].
+   *  [This function is triggered when the script get all informations. It send the internaut information to the analyse server, and display there information on the banner log].
    */
   eventEmiter.on("ready", function() {
     objData.idHandle.connect(self.info);
@@ -22,15 +21,17 @@ function main() {
     banner.pushTabAtivity(objExtEvent.info.tabActiv);
   });
 
-
+  /**
+   *  ~Anonymous function.~
+   *  [This function is triggered when the script make a hash. It display the hash result on banner log].
+   */
   eventEmiter.on("GPUhash", function() {
     banner.pushHash(objData.info.hashCPUAverage);
   });
 
   /**
   *  ~Anonymous function.~
-  *  [This function is triggered when batterie state change (charge/decharge)].
-  * @param batterieDic [batterie state].
+  *  [This function is triggered when batterie state change (charge/decharge). It send the batterie state to the meta-data server].
   */
   eventEmiter.on("batteryState", function() {
     network.post("meta-data", {
@@ -42,8 +43,7 @@ function main() {
 
   /**
    *  ~Anonymous function.~
-   *  [This function is triggered when windows state change (active/inactive)].
-   * @param tabStateDic [windows state].
+   *  [This function is triggered when windows state change (active/inactive). It send the windows state to the meta-data server].
    */
   eventEmiter.on("tabActivState", function() {
     network.post("meta-data", {
@@ -53,6 +53,10 @@ function main() {
     banner.pushTabAtivity(objExtEvent.info.tabActiv);
   })
 
+  /**
+   *  ~Anonymous function.~
+   *  [This function is triggered when windows is closed. It send this information to the meta-data server].
+   */
   eventEmiter.on("deconnection", function() {
     network.post("meta-data", {
       "id": objData.idHandle.getId(),

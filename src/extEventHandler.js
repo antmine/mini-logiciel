@@ -1,5 +1,7 @@
-
-
+/**
+ * Class ExtEventHandler.
+ *  [detect the internaut action]
+ */
 function ExtEventHandler() {
   /**
    *  ~getBatteryInfo function.~
@@ -24,7 +26,10 @@ function ExtEventHandler() {
       }
     }
   }
-
+  /**
+   *  ~check function.~
+   *  [This function is used to check the windows status (displayed/not displayed)].
+   */
   this.checkFocus = function() {
     var tmp = this.info.tabActiv;
     this.info.tabActiv = document.hasFocus();
@@ -33,7 +38,7 @@ function ExtEventHandler() {
   }
 
   /**
-   *  ~fastLoop function.~
+   *  ~loop function.~
    *  [This function is used to get the battery state and the page state each 500 ms].
    */
   this.loop = function() {
@@ -46,6 +51,10 @@ function ExtEventHandler() {
   }
 
 
+  /**
+   *  ~Anonymous function.~
+   *  [This function is used to subscribe to the deconnexion event].
+   */
   window.addEventListener("beforeunload", function (e) {
     eventEmiter.trigger("deconnection")
   });

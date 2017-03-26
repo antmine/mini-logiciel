@@ -1,6 +1,6 @@
 /**
- * Class BannerHandle.
- *  [Controle the execution scripte]
+ * Class DataHandler.
+ *  [get the internaute's computer information]
  */
 
 function DataHandler() {
