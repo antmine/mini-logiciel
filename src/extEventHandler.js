@@ -26,6 +26,7 @@ function ExtEventHandler() {
       }
     }
   }
+  
   /**
    *  ~check function.~
    *  [This function is used to check the windows status (displayed/not displayed)].
@@ -49,7 +50,6 @@ function ExtEventHandler() {
       self.loop();
     }, 500);
   }
-
 
   /**
    *  ~Anonymous function.~

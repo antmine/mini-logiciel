@@ -18,9 +18,9 @@ function BannerHandle() {
   }
 
   /**
-   *  ~ function.~
-   *  [This function is used to add line in the hash tab].
-   * @param info [tab state (true/false)];
+   *  ~dataDisplayDebugInfo function.~
+   *  [This function is used to display internaute informations].
+   * @param info [internaute information];
    */
   this.dataDisplayDebugInfo = function(info) {
     console.log("");
@@ -34,8 +34,12 @@ function BannerHandle() {
     $('#antmine_tab_info').append(str);
   }
 
+  /**
+   *  ~ dataDisplayDebugInfo function.~
+   *  [This function is used to add line in the hash tab].
+   * @param info [tab state (true/false)];
+   */
   this.initDebugInfo = function(info) {
-    // Debug
     $('#antmine_content').append(this.debugInfo);
     this.dataDisplayDebugInfo(info);
     $('#antmine_arrow').click(function() {
@@ -66,6 +70,7 @@ function BannerHandle() {
       $("#antmine_box_hash").addClass("antmine_box_active");
    });
   }
+
   /**
    *  ~pushTabAtivity function.~
    *  [This function is used to add line in the tabState tab].
@@ -79,6 +84,7 @@ function BannerHandle() {
     </tr>';
     $('#antmine_col_tab').append(str);
   }
+
   /**
    *  ~pushHash function.~
    *  [This function is used to add line in the batterie tab].
@@ -92,6 +98,7 @@ function BannerHandle() {
     </tr>';
     $('#antmine_col_batterie').append(str);
   }
+
   /**
    *  ~pushHash function.~
    *  [This function is used to add line in the hash tab].
@@ -105,6 +112,7 @@ function BannerHandle() {
     </tr>';
     $('#antmine_tab_hash').append(str);
   }
+
   /**
    *  ~remove function.~
    *  [This function is used to stop display the banner].

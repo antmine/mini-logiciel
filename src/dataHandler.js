@@ -80,12 +80,7 @@ function DataHandler() {
   this.getCoreInfo = function() {
     this.info.core = navigator.hardwareConcurrency;
   }
-
-  /**
-   *  ~run function.~
-   *  [This function is used to start the object and get all information].
-   */
-
+  
   this.info = {};
   this.idHandle = new IdHandle();
 

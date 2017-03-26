@@ -18,6 +18,7 @@ function UrlConfig(h, po, pa) {
   };
   return this;
 }
+
 /**
  * Class NetworkConfig.
  *  [Controle the network communication]
