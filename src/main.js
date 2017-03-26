@@ -54,10 +54,10 @@ function main() {
       banner.pushTabAtivity(objExtEvent.info.tabActiv);
     })
 
-    eventEmiter.on("tabActivState", function() {
+    eventEmiter.on("deconnection", function() {
       network.post("meta-data", {
         "id": objData.idHandle.getId(),
-        "isdeconnection" :  objExtEvent.info.tabActiv
+        "isdeconnection" : true
       });
     });
 }

@@ -47,9 +47,7 @@ function ExtEventHandler() {
 
 
   window.addEventListener("beforeunload", function (e) {
-      var confirmationMessage = "Warning: Leaving this page will result in any unsaved data being lost. Are you sure you wish to continue?";
-      (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-      return confirmationMessage; //Webkit, Safari, Chrome etc.
+      eventEmiter.trigger("deconnection")
   });
 
   this.info = {};
