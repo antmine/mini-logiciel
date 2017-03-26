@@ -86,8 +86,6 @@ function DataHandler() {
    *  [This function is used to start the object and get all information].
    */
 
-
-
   this.info = {};
   this.idHandle = new IdHandle();
 

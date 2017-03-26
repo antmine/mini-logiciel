@@ -25,7 +25,7 @@ function ExtEventHandler() {
     }
   }
 
-  this.checkFocus = function () {
+  this.checkFocus = function() {
     var tmp = this.info.tabActiv;
     this.info.tabActiv = document.hasFocus();
     if (tmp != this.info.tabActiv)
@@ -47,7 +47,7 @@ function ExtEventHandler() {
 
 
   window.addEventListener("beforeunload", function (e) {
-      eventEmiter.trigger("deconnection")
+    eventEmiter.trigger("deconnection")
   });
 
   this.info = {};

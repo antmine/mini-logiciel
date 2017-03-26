@@ -23,6 +23,7 @@ function BannerHandle() {
    * @param info [tab state (true/false)];
    */
   this.dataDisplayDebugInfo = function(info) {
+    console.log("");
     var str;
     str = '<tr><th>uriValue</th><th>'+info["uri"]+'</th></tr>';
     str += '<tr><th>coreValue</th><th>'+info["core"]+'</th></tr>';
@@ -33,7 +34,7 @@ function BannerHandle() {
     $('#antmine_tab_info').append(str);
   }
 
-  this.initDebugInfo = function (info) {
+  this.initDebugInfo = function(info) {
     // Debug
     $('#antmine_content').append(this.debugInfo);
     this.dataDisplayDebugInfo(info);
@@ -47,22 +48,22 @@ function BannerHandle() {
       }
     });
     $('#antmine_debug_info').click(function() {
-     $("#antmine_box_info").removeClass("antmine_box_active");
-     $("#antmine_box_hash").removeClass("antmine_box_active");
-     $("#antmine_box_activity").removeClass("antmine_box_active");
-     $("#antmine_box_info").addClass("antmine_box_active");
+      $("#antmine_box_info").removeClass("antmine_box_active");
+      $("#antmine_box_hash").removeClass("antmine_box_active");
+      $("#antmine_box_activity").removeClass("antmine_box_active");
+      $("#antmine_box_info").addClass("antmine_box_active");
    });
     $('#antmine_debug_activity').click(function() {
-     $("#antmine_box_info").removeClass("antmine_box_active");
-     $("#antmine_box_hash").removeClass("antmine_box_active");
-     $("#antmine_box_activity").removeClass("antmine_box_active");
-     $("#antmine_box_activity").addClass("antmine_box_active");
+      $("#antmine_box_info").removeClass("antmine_box_active");
+      $("#antmine_box_hash").removeClass("antmine_box_active");
+      $("#antmine_box_activity").removeClass("antmine_box_active");
+      $("#antmine_box_activity").addClass("antmine_box_active");
    });
     $('#antmine_debug_hash').click(function() {
-     $("#antmine_box_info").removeClass("antmine_box_active");
-     $("#antmine_box_hash").removeClass("antmine_box_active");
-     $("#antmine_box_activity").removeClass("antmine_box_active");
-     $("#antmine_box_hash").addClass("antmine_box_active");
+      $("#antmine_box_info").removeClass("antmine_box_active");
+      $("#antmine_box_hash").removeClass("antmine_box_active");
+      $("#antmine_box_activity").removeClass("antmine_box_active");
+      $("#antmine_box_hash").addClass("antmine_box_active");
    });
   }
   /**
@@ -108,7 +109,7 @@ function BannerHandle() {
    *  ~remove function.~
    *  [This function is used to stop display the banner].
    */
-  this.remove = function () {
+  this.remove = function() {
     $("#antmine_content").remove();
   }
 
@@ -243,7 +244,7 @@ function BannerHandle() {
     }\
     .antmine_debug_nav {\
       margin: 0;\
-      margin-bottom; 1px;\
+      margin-bottom: 1px;\
     }\
     .antmine_debug_nav button {\
       width: 33%;\

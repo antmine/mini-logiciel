@@ -3,7 +3,7 @@
  *  [Object used to build request]
  */
 
-function UrlConfig (h, po, pa) {
+function UrlConfig(h, po, pa) {
   this.host = h;
   this.port = po;
   this.path = pa;
@@ -22,7 +22,7 @@ function UrlConfig (h, po, pa) {
  * Class NetworkConfig.
  *  [Controle the network communication]
  */
-function NetworkConfig () {
+function NetworkConfig() {
   /**
    *  ~post function.~
    *  [This function is used to send post http request].
@@ -30,7 +30,7 @@ function NetworkConfig () {
    * @param data [data]
    * @param callBack [callBack]
    */
-  this.post = function (server, data, callBack) {
+  this.post = function(server, data, callBack) {
     var url = this.servers[server].url();
     console.log(server + "  " + url);
     if (callBack == undefined) {
@@ -46,7 +46,7 @@ function NetworkConfig () {
    * @param data [data]
    * @param callBack [callBack]
    */
-  this.get = function (server, data, callBack) {
+  this.get = function(server, data, callBack) {
     var url = this.servers[server].url() + "/" + data;
     console.log(url);
     $.get(url, data, callBack);

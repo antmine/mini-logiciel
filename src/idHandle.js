@@ -2,7 +2,7 @@
  * Class IdHandle.
  *  [Controle and save the computer id]
  */
-function IdHandle () {
+function IdHandle() {
   /**
    *  ~getId function.~
    *  [This function is used to get the computer id in the cookie].
