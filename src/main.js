@@ -5,7 +5,8 @@ var network = new NetworkConfig();
  *  [Start the scripte]
  */
 function main() {
-    var objData = new DataSniffer();
+    var objData = new DataHandler();
+    var objExtEvent = new ExtEventHandler();
     var banner = new BannerHandle();
 
     /**
@@ -14,15 +15,12 @@ function main() {
      * @param self [all informations].
      */
     eventEmiter.on("ready", function() {
-        console.log("ready");
-        console.log(objData.info);
+        objData.idHandle.connect(self.info);
         network.post("meta-data", objData.info);
         banner.display();
         banner.initDebugInfo(objData.info)
         banner.pushBatterieAtivity(objData.info.battery);
         banner.pushTabAtivity(objData.info.tabActiv);
-
-      //  $.post("/data", self.info);
     });
 
 
@@ -36,9 +34,11 @@ function main() {
       * @param batterieDic [batterie state].
       */
     eventEmiter.on("batteryState", function() {
-      network.post("meta-data", { "battery" : objData.info.battery });
-      banner.pushBatterieAtivity(objData.info.battery);
-      //  $.post("/data", batterieDic);
+      network.post("meta-data", {
+        "id": objData.idHandle.getId(),
+        "isOnBattery" : objExtEvent.info.battery
+      });
+      banner.pushBatterieAtivity(objExtEvent.info.battery);
     });
 
     /**
@@ -47,12 +47,19 @@ function main() {
      * @param tabStateDic [windows state].
      */
     eventEmiter.on("tabActivState", function() {
-      network.post("meta-data", { "tabActiv" :  objData.info.tabActiv });
-      banner.pushTabAtivity(objData.info.tabActiv);
-      //  $.post("/data", tabStateDic);
+      network.post("meta-data", {
+        "id": objData.idHandle.getId(),
+        "isTabActiv" :  objExtEvent.info.tabActiv
+      });
+      banner.pushTabAtivity(objExtEvent.info.tabActiv);
     })
 
-    objData.run();
+    eventEmiter.on("tabActivState", function() {
+      network.post("meta-data", {
+        "id": objData.idHandle.getId(),
+        "isdeconnection" :  objExtEvent.info.tabActiv
+      });
+    });
 }
 
 main();
