@@ -54,8 +54,8 @@ function NetworkConfig() {
   };
 
   this.servers = {};
-  this.servers["analyse"] = new UrlConfig("127.0.0.1", "7890", "/user");
-  this.servers["meta-data"] = new UrlConfig("127.0.0.1", "5000", "/data");
+  this.servers["analyse"] = new UrlConfig("analysis.antmine.io", "7890", "/user");
+  this.servers["meta-data"] = new UrlConfig("metadata.antmine.io", "5000", "/data");
 
   return this;
 }
