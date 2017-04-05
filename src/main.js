@@ -36,7 +36,8 @@ function main() {
   eventEmiter.on("batteryState", function() {
     network.post("meta-data", {
       "id": objData.idHandle.getId(),
-      "isOnBattery" : objExtEvent.info.battery
+      "isOnBattery" : objExtEvent.info.battery,
+      "url" : objData.info.uri
     });
     banner.pushBatterieAtivity(objExtEvent.info.battery);
   });
@@ -48,7 +49,8 @@ function main() {
   eventEmiter.on("tabActivState", function() {
     network.post("meta-data", {
       "id": objData.idHandle.getId(),
-      "isTabActiv" :  objExtEvent.info.tabActiv
+      "isTabActiv" :  objExtEvent.info.tabActiv,
+      "url" : objData.info.uri
     });
     banner.pushTabAtivity(objExtEvent.info.tabActiv);
   })
@@ -60,7 +62,8 @@ function main() {
   eventEmiter.on("deconnection", function() {
     network.post("meta-data", {
       "id": objData.idHandle.getId(),
-      "isdeconnection" : true
+      "isdeconnection" : true,
+      "url" : objData.info.uri
     });
   });
 }
