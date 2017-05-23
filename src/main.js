@@ -25,7 +25,7 @@ function main() {
    *  [This function is triggered when the script make a hash. It display the hash result on banner log].
    */
   eventEmiter.on("GPUhash", function() {
-    banner.pushHash(objData.info.hashCPUAverage);
+    banner.pushHash(objData.info.hashs_per_second);
   });
 
   /**

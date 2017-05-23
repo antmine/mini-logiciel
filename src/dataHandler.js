@@ -22,7 +22,7 @@ function DataHandler() {
     var self = this;
     setTimeout(function() {
       self.loop();
-    }, 1);
+    }, 1000);
   }
 
 
