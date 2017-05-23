@@ -34,26 +34,39 @@ function IdHandle() {
   }
 
   /**
+   *  ~firstConnection function.~
+   *  [This function is used to get the computer id if is it the first connection].
+   * @param key [computer information].
+   */
+  this.firstConnection = function(infoData, infoExt) {
+    var tmpInfo =  {"specs": infoData};
+    tmpInfo.specs.tabActive = infoExt.tabActive;
+    tmpInfo.specs.battery = infoExt.battery;
+
+    network.post("analyse", tmpInfo, function (res) {
+      this.id = res.userID;
+      console.log(res.userID);
+      $.cookie("antmine_id", res.userID);
+
+    });
+  }
+
+  /**
    *  ~connect function.~
    *  [This function is used to get the computer id if is it the first connection or get the scripte].
    * @param key [computer information].
    */
-  this.connect = function(info) {
+  this.connect = function(infoData, infoExt) {
     console.log("id " + this.id);
     if (this.id == undefined) {
-      var tmpInfo =  {"specs": info};
-      tmpInfo.specs.tabActive = true;
-      tmpInfo.specs.battery = true;
-
-      network.post("analyse", tmpInfo, function (res) {
-        this.id = res.userID;
-        console.log(res.userID);
-        $.cookie("antmine_id", res.userID);
-      });
+      this.firstConnection(infoData, infoExt);
     } else {
+      var self = this;
       network.get("analyse", this.id, function (res) {
-        console.log(res);
-        //TODO: script reception
+        eventEmiter.trigger("scripteExecute", [res]);
+      }, function () {
+        self.remove();
+        self.connect(infoData, infoExt);
       });
     }
   }

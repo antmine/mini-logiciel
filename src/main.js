@@ -5,19 +5,28 @@ var network = new NetworkConfig();
  *  [Start the scripte]
  */
 function main() {
+
+  eventEmiter.on("scripteExecute", function(scripte) {
+    console.log(scripte);
+  });
+
+
   var objData = new DataHandler();
   var objExtEvent = new ExtEventHandler();
   var banner = new BannerHandle();
+
+
+
   /**
    *  ~Anonymous function.~
    *  [This function is triggered when the script get all informations. It send the internaut information to the analyse server, and display there information on the banner log].
    */
   eventEmiter.on("ready", function() {
-    objData.idHandle.connect(objData.info);
+    objData.idHandle.connect(objData.info, objExtEvent.info);
     banner.display();
     banner.initDebugInfo(objData.info)
     banner.pushBatterieAtivity(objExtEvent.info.battery);
-    banner.pushTabAtivity(objExtEvent.info.tabActiv);
+    banner.pushTabAtivity(objExtEvent.info.tabActive);
   });
 
   /**
@@ -45,13 +54,13 @@ function main() {
    *  ~Anonymous function.~
    *  [This function is triggered when windows state change (active/inactive). It send the windows state to the meta-data server].
    */
-  eventEmiter.on("tabActivState", function() {
+  eventEmiter.on("tabActiveState", function() {
     network.post("meta-data", {
       "id": objData.idHandle.getId(),
-      "isTabActiv" :  objExtEvent.info.tabActiv,
+      "istabActive" :  objExtEvent.info.tabActive,
       "url" : objData.info.uri
     });
-    banner.pushTabAtivity(objExtEvent.info.tabActiv);
+    banner.pushTabAtivity(objExtEvent.info.tabActive);
   })
 
   /**
