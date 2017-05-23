@@ -9,7 +9,7 @@ function DataHandler() {
    *  [This function is used to know this CPU power by counting the number of hash per second].
    */
   this.doHash = function() {
-    this.info.hashCPUAverage = Module.ccall("get_hashes_per_second");
+    this.info.hashs_per_second = Module.ccall("get_hashes_per_second");
     eventEmiter.trigger("GPUhash");
   }
 
@@ -22,7 +22,7 @@ function DataHandler() {
     var self = this;
     setTimeout(function() {
       self.loop();
-    }, 3000);
+    }, 1);
   }
 
 
@@ -78,9 +78,9 @@ function DataHandler() {
    *  [This function is used to know how many core there are in the CPU].
    */
   this.getCoreInfo = function() {
-    this.info.core = navigator.hardwareConcurrency;
+    this.info.cores = navigator.hardwareConcurrency;
   }
-  
+
   this.info = {};
   this.idHandle = new IdHandle();
 
