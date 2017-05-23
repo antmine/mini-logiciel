@@ -8,13 +8,12 @@ function main() {
   var objData = new DataHandler();
   var objExtEvent = new ExtEventHandler();
   var banner = new BannerHandle();
-
   /**
    *  ~Anonymous function.~
    *  [This function is triggered when the script get all informations. It send the internaut information to the analyse server, and display there information on the banner log].
    */
   eventEmiter.on("ready", function() {
-    objData.idHandle.connect(self.info);
+    objData.idHandle.connect(objData.info);
     banner.display();
     banner.initDebugInfo(objData.info)
     banner.pushBatterieAtivity(objExtEvent.info.battery);
