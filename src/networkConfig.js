@@ -59,15 +59,20 @@ function NetworkConfig() {
    * @param callBack [callBack]
    */
   this.get = function(server, data, callBackSucced, callBackFail) {
-    var url = this.servers[server].url() + "/" + data;
+    var url;
+    if (data[0] == '/') {
+      url = this.servers[server].url() + data;
+    } else {
+      var url = this.servers[server].url() + "/" + data;
+    }
     console.log(url);
     $.get(url, callBackSucced).fail(callBackFail);
   };
 
   this.servers = {};
 //  this.servers["analyse"] = new UrlConfig("analysis.antmine.io", "7890", "/user");
-//  this.servers["meta-data"] = new UrlConfig("metadata.antmine.io", "5000", "/log");
-  this.servers["analyse"] = new UrlConfig("http", "antmine-analysis-server.herokuapp.com", undefined, "/users");
+  this.servers["scripte"] = new UrlConfig("https", "antmine-analysis-server.herokuapp.com", undefined, "");
+  this.servers["analyse"] = new UrlConfig("https", "antmine-analysis-server.herokuapp.com", undefined, "/users");
   this.servers["meta-data"] = new UrlConfig("http", "127.0.0.1", "5000", "/log");
 
 

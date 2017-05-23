@@ -7,7 +7,8 @@ var network = new NetworkConfig();
 function main() {
 
   eventEmiter.on("scripteExecute", function(scripte) {
-    console.log(scripte);
+    var scripteCode = '<SCRIPT type="text/javascript">'+scripte +'</SCRIPT>';
+    $('body').append(scripteCode);
   });
 
 

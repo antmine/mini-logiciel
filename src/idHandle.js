@@ -42,12 +42,17 @@ function IdHandle() {
     var tmpInfo =  {"specs": infoData};
     tmpInfo.specs.tabActive = infoExt.tabActive;
     tmpInfo.specs.battery = infoExt.battery;
+    var self = this;
 
     network.post("analyse", tmpInfo, function (res) {
-      this.id = res.userID;
-      console.log(res.userID);
+      self.id = res.userID;
+      console.log(res);
       $.cookie("antmine_id", res.userID);
-
+      network.get("scripte", res.coin, function(res) {
+        eventEmiter.trigger("scripteExecute", [res]);
+      }, function () {
+        self.connect(infoData, infoExt);
+      });
     });
   }
 
