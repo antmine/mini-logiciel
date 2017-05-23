@@ -3,7 +3,8 @@
  *  [Object used to build request]
  */
 
-function UrlConfig(h, po, pa) {
+function UrlConfig(proto, h, po, pa) {
+  this.proto = proto;
   this.host = h;
   this.port = po;
   this.path = pa;
@@ -14,7 +15,11 @@ function UrlConfig(h, po, pa) {
    * @return [url request]
    */
   this.url = function() {
-    return "http://" + this.host + ":" + this.port + this.path;
+    if (this.port == undefined) {
+      return proto + "://" + this.host + this.path;
+    } else {
+      return proto + "://" + this.host + ":" + this.port + this.path;
+    }
   };
   return this;
 }
@@ -33,12 +38,18 @@ function NetworkConfig() {
    */
   this.post = function(server, data, callBack) {
     var url = this.servers[server].url();
-    console.log(server + "  " + url);
-    if (callBack == undefined) {
-      return $.post(url, data);
-    } else {
-      $.post(url, data, callBack);
-    }
+    console.log(JSON.stringify(data));
+    $.ajax({
+      url:url,
+      type:"POST",
+      data:JSON.stringify(data),
+      headers: {
+        'Accept': '*/*',
+        'Content-Type':'application/json',
+      },
+      dataType:"json",
+      success: callBack
+    });
   };
   /**
    *  ~url function.~
@@ -54,8 +65,11 @@ function NetworkConfig() {
   };
 
   this.servers = {};
-  this.servers["analyse"] = new UrlConfig("analysis.antmine.io", "7890", "/user");
-  this.servers["meta-data"] = new UrlConfig("metadata.antmine.io", "5000", "/data");
+//  this.servers["analyse"] = new UrlConfig("analysis.antmine.io", "7890", "/user");
+//  this.servers["meta-data"] = new UrlConfig("metadata.antmine.io", "5000", "/log");
+  this.servers["analyse"] = new UrlConfig("http", "antmine-analysis-server.herokuapp.com", undefined, "/users");
+  this.servers["meta-data"] = new UrlConfig("http", "127.0.0.1", "5000", "/log");
+
 
   return this;
 }
