@@ -144,7 +144,7 @@ function BannerHandle() {
       <div id="antmine_box_activity" class="antmine_box">\
         <table id="antmine_tab_activity"> \
           <tr>\
-            <th>tabActiv</th><th>battery</th>\
+            <th>tabActive</th><th>battery</th>\
           </tr>\
           <tr>\
             <td>\

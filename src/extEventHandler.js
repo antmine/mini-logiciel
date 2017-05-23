@@ -33,10 +33,10 @@ function ExtEventHandler() {
    *  [This function is used to check the windows status (displayed/not displayed)].
    */
   this.checkFocus = function() {
-    var tmp = this.info.tabActiv;
-    this.info.tabActiv = document.hasFocus();
-    if (tmp != this.info.tabActiv)
-      eventEmiter.trigger("tabActivState");
+    var tmp = this.info.tabActive;
+    this.info.tabActive = document.hasFocus();
+    if (tmp != this.info.tabActive)
+      eventEmiter.trigger("tabActiveState");
   }
 
   /**
