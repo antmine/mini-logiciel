@@ -58,10 +58,10 @@ function NetworkConfig() {
    * @param data [data]
    * @param callBack [callBack]
    */
-  this.get = function(server, data, callBack) {
+  this.get = function(server, data, callBackSucced, callBackFail) {
     var url = this.servers[server].url() + "/" + data;
     console.log(url);
-    $.get(url, data, callBack);
+    $.get(url, callBackSucced).fail(callBackFail);
   };
 
   this.servers = {};
