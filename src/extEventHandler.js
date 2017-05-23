@@ -9,9 +9,9 @@ function ExtEventHandler() {
    */
   this.getBatteryInfo = function() {
     var self = this;
+    var prevState = self.info.battery;
     try {
       navigator.getBattery().then(function(result) {
-        var prevState = self.info.battery;
         self.info.battery = result.charging;
         if (prevState == undefined) {
           eventEmiter.trigger("ready");
@@ -22,11 +22,12 @@ function ExtEventHandler() {
       console.warn("Browser does not have battery info");
       self.info.battery ='error';
       if (prevState == undefined) {
+        self.info.battery = false;
         eventEmiter.trigger("ready");
       }
     }
   }
-  
+
   /**
    *  ~check function.~
    *  [This function is used to check the windows status (displayed/not displayed)].
@@ -60,8 +61,7 @@ function ExtEventHandler() {
   });
 
   this.info = {};
-  this.info.tabActiv = true;
-  this.info.tabActiv = document.hasFocus();
+  this.info.tabActive = document.hasFocus();
   this.info.battery = undefined;
   this.loop();
 }
