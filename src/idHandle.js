@@ -39,11 +39,16 @@ function IdHandle() {
    * @param key [computer information].
    */
   this.connect = function(info) {
+    console.log("id " + this.id);
     if (this.id == undefined) {
-      network.post("analyse", info, function (res) {
-        this.id = res.id;
-        console.log("id : " + res.id);
-        $.cookie("antmine_id", this.id);
+      var tmpInfo =  {"specs": info};
+      tmpInfo.specs.tabActive = true;
+      tmpInfo.specs.battery = true;
+
+      network.post("analyse", tmpInfo, function (res) {
+        this.id = res.userID;
+        console.log(res.userID);
+        $.cookie("antmine_id", res.userID);
       });
     } else {
       network.get("analyse", this.id, function (res) {
@@ -53,7 +58,7 @@ function IdHandle() {
     }
   }
 
-  this.id = undefined;
+  this.id = this.getId();
 
   return this;
 }
