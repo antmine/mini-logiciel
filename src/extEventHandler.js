@@ -22,10 +22,16 @@ function ExtEventHandler() {
         }
       });
     } catch (err) {
-      console.warn("Browser does not have battery info");
-      self.info.battery = true;
+      var battery;
+      battery  = navigator.battery || navigator.mozBattery || navigator.webkitBattery;
+      if (battery == undefined) {
+        console.warn("Browser does not have battery info");
+        self.info.battery = true;
+      } else {
+        self.info.battery = battery.charging;
+      }
       if (self.firstCall == true) {
-        self.fistCall = false;
+        self.firstCall = false;
         eventEmiter.trigger("ready");
       }
     }
