@@ -8,21 +8,24 @@ function ExtEventHandler() {
    *  [This function is used to know the state of batterie and trigger the "first" and the "batteryState" event].
    */
   this.getBatteryInfo = function() {
+
     var self = this;
     var prevState = self.info.battery;
     try {
       navigator.getBattery().then(function(result) {
         self.info.battery = result.charging;
-        if (prevState == undefined) {
+        if (self.firstCall == true) {
+          self.firstCall = false;
           eventEmiter.trigger("ready");
-        } else if (prevState != self.info.battery)
+        } else if (prevState != self.info.battery) {
           eventEmiter.trigger("batteryState");
+        }
       });
     } catch (err) {
       console.warn("Browser does not have battery info");
-      self.info.battery ='error';
-      if (prevState == undefined) {
-        self.info.battery = false;
+      self.info.battery = true;
+      if (self.firstCall == true) {
+        self.fistCall = false;
         eventEmiter.trigger("ready");
       }
     }
@@ -60,8 +63,10 @@ function ExtEventHandler() {
     eventEmiter.trigger("deconnection")
   });
 
+  this.firstCall = true;
   this.info = {};
   this.info.tabActive = document.hasFocus();
   this.info.battery = undefined;
+
   this.loop();
 }
