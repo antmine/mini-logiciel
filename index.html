@@ -2,6 +2,8 @@
 <html>
 
   <body>
+    <button type="button" id="removeCookie" name="removeCookie">removeCookie</button>
+
     <div class="DataBox">
       <table class="DataBoxTable">
         <tr>
@@ -33,8 +35,8 @@
           <th id="webGLLanguageValue"></th>
         </tr>
         <tr>
-          <th>tabActiv :</th>
-          <th id="tabActivValue"></th>
+          <th>tabActive :</th>
+          <th id="tabActiveValue"></th>
         </tr>
         <tr>
           <th>hashCPUAverage :</th>
@@ -46,7 +48,7 @@
         </tr>
       </table>
     </div>
-
+    <a href="test/unit-test/unitTest.html">test unitair</a>
 
     <div>
       <pre id="params"></pre>
@@ -55,10 +57,22 @@
 
     <br style="clear:both"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="/Js/sha256.js"></script>
-    <script src="/Js/DataSniffer.js"></script>
-    <script src="/Js/main.js"></script>
 
+    <script src="node_modules/wolfy87-eventemitter/EventEmitter.min.js"></script>
+    <script src="node_modules/jquery.cookie/jquery.cookie.js"></script>
+
+    <script src="src/sha256.js"></script>
+    <script src="src/networkConfig.js"></script>
+    <script src="src/bannerHandle.js"></script>
+    <script src="src/idHandle.js"></script>
+    <script src="src/extEventHandler.js"></script>
+    <script src="src/dataHandler.js"></script>
+    <script src="src/main.js"></script>
+    <script type="text/javascript">
+      $('#removeCookie').click(function() {
+        $.removeCookie("antmine_id");
+      });
+    </script>
   </body>
 
 

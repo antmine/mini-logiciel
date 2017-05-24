@@ -3,8 +3,8 @@ QUnit.test('Test Side Effect getCoreInfo',function suite(assert) {
     var obj = init();
     obj.getCoreInfo();
 
-    assert.equal(obj.info.uri,null,"Good Uri")
-    assert.notEqual(obj.info.core, 0, "");
+    assert.equal(obj.info.uri,null,"Good Uri");
+    assert.notEqual(obj.info.core, 0, "Core :" + obj.info.core);
     assert.equal(obj.info.webGLRenderer, null, "");
     assert.equal(obj.info.webGLVendor, null, "");
     assert.equal(obj.info.webGLVersion, null, "");
@@ -19,10 +19,10 @@ QUnit.test('Test Side Effect getUri',function suite(assert) {
     var obj = init();
     obj.getUri();
 
-    assert.notEqual(obj.info.uri,null,"Good Uri")
-    assert.equal(obj.info.core, 0, "");
-    assert.equal(obj.info.webGLRenderer, null, "");
-    assert.equal(obj.info.webGLVendor, null, "");
+    assert.notEqual(obj.info.uri,null,"Good Uri : " + obj.info.uri);
+    assert.equal(obj.info.core, 0, "Core : " + obj.info.core);
+    assert.equal(obj.info.webGLRenderer, null, "webGLRenderer : " + obj.info.webGLRenderer);
+    assert.equal(obj.info.webGLVendor, null, "webGLVendor : " + obj.info.webGLVendor);
     assert.equal(obj.info.webGLVersion, null, "");
     assert.equal(obj.info.webGLLanguage, null, "");
     assert.equal(obj.info.tabActiv, null, "");
@@ -30,12 +30,10 @@ QUnit.test('Test Side Effect getUri',function suite(assert) {
     assert.equal(obj.info.battery, null, "");
 });
 
-QUnit.test('Test Side Effect getBatteryInfo',function suite(assert) {
+/*QUnit.test('Test Side Effect getBatteryInfo',function suite(assert) {
     var done = assert.async();
     var obj = init();
     obj.on ("batteryState", function(res){
-      console.log("end");
-
       assert.equal(obj.info.uri,null,"Good Uri");
       assert.equal(obj.info.core, 0, "");
       assert.equal(obj.info.webGLRenderer, null, "");
@@ -52,12 +50,11 @@ QUnit.test('Test Side Effect getBatteryInfo',function suite(assert) {
     obj.getBatteryInfo();
 
 });
-
 QUnit.test('Test Side Effect getFocusInfo',function suite(assert) {
     var done = assert.async();
     var obj = init();
     obj.on ("tabActivState", function(res){
-      assert.equal(obj.info.uri,null,"Good Uri")
+      assert.equal(obj.info.uri,null,"Good Uri");
       assert.equal(obj.info.core, 0, "");
       assert.equal(obj.info.webGLRenderer, null, "");
       assert.equal(obj.info.webGLVendor, null, "");
@@ -72,6 +69,7 @@ QUnit.test('Test Side Effect getFocusInfo',function suite(assert) {
 
 });
 
+*/
 
 function init(){
   var obj = DataSniffer();

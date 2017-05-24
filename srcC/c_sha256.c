@@ -203,7 +203,7 @@ void sha256_final(sha256_ctx *ctx, unsigned char *digest)
 
     sha256_transf(ctx, ctx->block, block_nb);
 
-    for (i = 0 ; i < 8; i++) {
+    for (i = 0; i < 8; i++) {
         UNPACK32(ctx->h[i], &digest[i << 2]);
     }
 }
@@ -213,7 +213,7 @@ double now() {
     gettimeofday(&tv, NULL);
 
     double time_in_mill =
-             (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000 ;
+             (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
     return time_in_mill;
 }
 
