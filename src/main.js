@@ -75,6 +75,8 @@ function main() {
       "url" : objData.info.uri
     });
   });
+  objData.loop();
+  objExtEvent.loop();
 }
 
 main();

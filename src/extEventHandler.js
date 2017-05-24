@@ -74,5 +74,5 @@ function ExtEventHandler() {
   this.info.tabActive = document.hasFocus();
   this.info.battery = undefined;
 
-  this.loop();
+//  this.loop();
 }

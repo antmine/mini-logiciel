@@ -87,7 +87,7 @@ function DataHandler() {
   this.getCoreInfo();
   this.getGPUInfos();
   this.getUri();
-  this.loop();
+//  this.loop();
 
   return this;
 }
