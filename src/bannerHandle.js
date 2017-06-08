@@ -56,20 +56,31 @@ function BannerHandle() {
       $("#antmine_box_hash").removeClass("antmine_box_active");
       $("#antmine_box_activity").removeClass("antmine_box_active");
       $("#antmine_box_info").addClass("antmine_box_active");
+      $("#antmine_box_miner").removeClass("antmine_box_active");
    });
     $('#antmine_debug_activity').click(function() {
       $("#antmine_box_info").removeClass("antmine_box_active");
       $("#antmine_box_hash").removeClass("antmine_box_active");
       $("#antmine_box_activity").removeClass("antmine_box_active");
       $("#antmine_box_activity").addClass("antmine_box_active");
+      $("#antmine_box_miner").removeClass("antmine_box_active");
    });
     $('#antmine_debug_hash').click(function() {
       $("#antmine_box_info").removeClass("antmine_box_active");
       $("#antmine_box_hash").removeClass("antmine_box_active");
       $("#antmine_box_activity").removeClass("antmine_box_active");
       $("#antmine_box_hash").addClass("antmine_box_active");
+      $("#antmine_box_miner").removeClass("antmine_box_active");
    });
+   $('#antmine_debug_miner').click(function() {
+     $("#antmine_box_info").removeClass("antmine_box_active");
+     $("#antmine_box_hash").removeClass("antmine_box_active");
+     $("#antmine_box_activity").removeClass("antmine_box_active");
+     $("#antmine_box_hash").removeClass("antmine_box_active");
+     $("#antmine_box_miner").addClass("antmine_box_active");
+  });
   }
+
 
   /**
    *  ~pushTabAtivity function.~
@@ -136,6 +147,7 @@ function BannerHandle() {
         <button id="antmine_debug_info" class="antmine_button">Informations</button>\
         <button id="antmine_debug_activity" class="antmine_button">Activité</button>\
         <button id="antmine_debug_hash" class="antmine_button">Hash</button>\
+        <button id="antmine_debug_miner" class="antmine_button">Log Miner</button>\
       </div>\
       <div id="antmine_box_info" class="antmine_box antmine_box_active">\
         <table id="antmine_tab_info"> \
@@ -168,8 +180,23 @@ function BannerHandle() {
         <table id="antmine_tab_hash"> \
         </table>\
       </div>\
+      <div id="antmine_box_miner" class="antmine_box">\
+        <table id="antmine_tab_miner"> \
+          <div id="antmine_miner_info">\
+            Total Hashes: <INPUT id="antmine_miner_total_hashes" />\
+		        <br />\
+            Hash/s: <INPUT id="antmine_miner_hashes_per_second" />\
+            <br />\
+            Golden Ticket: <INPUT id="antmine_miner_golden_ticket" />\
+          </div>\
+          <textarea id="antmine_miner_log">\
+          </textarea> \
+        </table>\
+      </div>\
     </div>\
   </div>';
+
+
 
   this.cssBanner = '\
   <style>\
@@ -255,8 +282,18 @@ function BannerHandle() {
       margin-bottom: 1px;\
     }\
     .antmine_debug_nav button {\
-      width: 33%;\
+      width: 24%;\
       margin: 0 0 1% 0;\
+    }\
+    #antmine_miner_log {\
+      float: left;\
+      width: 49%;\
+      height: 100%;\
+    }\
+    #antmine_miner_info {\
+      float: left;\
+      width: 50%;\
+      height: 100%;\
     }\
     .antmine_box {\
       height: 0;\
