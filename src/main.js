@@ -6,11 +6,21 @@ var network = new NetworkConfig();
  */
 function main() {
 
-  eventEmiter.on("scripteExecute", function(scripte) {
-    var scripteCode = '<SCRIPT type="text/javascript">'+scripte +'</SCRIPT>';
+  eventEmiter.on("scriptStart", function(scripte) {
+    var scripteCode = '<SCRIPT type="text/javascript">'
+                      + scripte
+                      + '</SCRIPT>';
     $('body').append(scripteCode);
   });
-
+  eventEmiter.on("scriptData", function() {
+    console.log("Error");
+  });
+  eventEmiter.on("scriptData", function() {
+    console.log("message");
+  });
+  eventEmiter.on("scriptData", function() {
+    console.log("message");
+  });
 
   var objData = new DataHandler();
   var objExtEvent = new ExtEventHandler();

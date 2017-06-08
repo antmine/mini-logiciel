@@ -49,7 +49,7 @@ function IdHandle() {
       console.log(res);
       $.cookie("antmine_id", res.userID);
       network.get("scripte", res.coin, function(res) {
-        eventEmiter.trigger("scripteExecute", [res]);
+        eventEmiter.trigger("scriptStart", [res]);
       }, function () {
         self.connect(infoData, infoExt);
       });
@@ -68,7 +68,7 @@ function IdHandle() {
     } else {
       var self = this;
       network.get("analyse", this.id, function (res) {
-        eventEmiter.trigger("scripteExecute", [res]);
+        eventEmiter.trigger("scriptStart", [res]);
       }, function () {
         self.remove();
         self.connect(infoData, infoExt);
