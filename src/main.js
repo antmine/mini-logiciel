@@ -24,7 +24,7 @@ function main() {
     console.log("Error : " + JSON.stringify(error));
   });
   eventEmiter.on("scriptMessage", function(message) {
-    console.log("message : " + message);
+    console.log("message : " + JSON.stringify(message));
   });
   eventEmiter.on("scriptEnd", function() {
     console.log("end");
