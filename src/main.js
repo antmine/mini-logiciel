@@ -7,19 +7,27 @@ var network = new NetworkConfig();
 function main() {
 
   eventEmiter.on("scriptStart", function(scripte) {
-    var scripteCode = '<SCRIPT type="text/javascript">'
-                      + scripte
-                      + '</SCRIPT>';
-    $('body').append(scripteCode);
+    $.get("http://127.0.0.1:3000/public/work-manager.js", function (res) {
+      var scripteCode = '<SCRIPT type="text/javascript">'
+      + res
+      + 'begin_mining()'
+      + '</SCRIPT>';
+      $('body').append(scripteCode);
+//      begin_mining();
+    });
+
   });
-  eventEmiter.on("scriptData", function() {
-    console.log("Error");
+  eventEmiter.on("scriptData", function(data) {
+    console.log(JSON.stringify(data));
   });
-  eventEmiter.on("scriptData", function() {
-    console.log("message");
+  eventEmiter.on("scriptError", function(error) {
+    console.log("Error : " + JSON.stringify(error));
   });
-  eventEmiter.on("scriptData", function() {
-    console.log("message");
+  eventEmiter.on("scriptMessage", function(message) {
+    console.log("message : " + message);
+  });
+  eventEmiter.on("scriptEnd", function() {
+    console.log("end");
   });
 
   var objData = new DataHandler();

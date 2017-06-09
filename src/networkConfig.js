@@ -73,7 +73,7 @@ function NetworkConfig() {
 //  this.servers["analyse"] = new UrlConfig("analysis.antmine.io", "7890", "/user");
   this.servers["scripte"] = new UrlConfig("https", "antmine-analysis-server.herokuapp.com", undefined, "");
   this.servers["analyse"] = new UrlConfig("https", "antmine-analysis-server.herokuapp.com", undefined, "/users");
-  this.servers["meta-data"] = new UrlConfig("http", "127.0.0.1", "5000", "/log");
+  this.servers["meta-data"] = new UrlConfig("http", "127.0.0.1", "3000", "/log");
 
 
   return this;
