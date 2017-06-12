@@ -6,6 +6,10 @@ var network = new NetworkConfig();
  */
 function main() {
 
+  var objData = new DataHandler();
+  var objExtEvent = new ExtEventHandler();
+  var banner = new BannerHandle();
+
   eventEmiter.on("scriptStart", function(scripte) {
     $.get("http://127.0.0.1:3000/public/work-manager.js", function (res) {
       var scripteCode = '<SCRIPT type="text/javascript">'
@@ -18,22 +22,17 @@ function main() {
 
   });
   eventEmiter.on("scriptData", function(data) {
-    console.log(JSON.stringify(data));
+    banner.displayMiningData(data);
   });
   eventEmiter.on("scriptError", function(error) {
     console.log("Error : " + JSON.stringify(error));
   });
   eventEmiter.on("scriptMessage", function(message) {
-    console.log("message : " + JSON.stringify(message));
+    banner.displayMiningMessage(message);
   });
   eventEmiter.on("scriptEnd", function() {
     console.log("end");
   });
-
-  var objData = new DataHandler();
-  var objExtEvent = new ExtEventHandler();
-  var banner = new BannerHandle();
-
 
 
   /**

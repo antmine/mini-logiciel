@@ -132,6 +132,24 @@ function BannerHandle() {
     $("#antmine_content").remove();
   }
 
+  this.displayMiningData = function(data) {
+    $('#antmine_miner_log').val(JSON.stringify(data));
+  }
+
+  this.displayMiningMessage = function(message) {
+    if (message.hasOwnProperty("total_hashed")) {
+      $('#antmine_miner_total_hashes').val(message.total_hashed);
+    }
+  //  console.log(message.hashes_per_second);
+    if (message.hasOwnProperty("hashes_per_second")) {
+      $('#antmine_miner_hashes_per_second').val(message.hashes_per_second);
+    }
+
+    if (message.hasOwnProperty("golden_ticket")) {
+      $('#antmine_miner_golden_ticket').val(message.golden_ticket);
+    }
+  }
+
   this.htmlBanner = '\
   <div id="antmine_banner">\
     <div id="antmine_arrow" class="antmine_arrow">\
