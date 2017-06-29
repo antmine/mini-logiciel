@@ -24,10 +24,9 @@ sudo npm -g install uglifyjs
 
 ### Test mode
 
-cloné les repos :
-[mini-logiciel](https://github.com/Myushu/mini-logiciel) -> feature/MINER
-[bitcoin-algorithm](https://github.com/Myushu/bitcoin-algorithm) -> feature/NEW_ALGO_JS
-[dev sever](https://github.com/Myushu/dev-server) -> master
+* [mini-logiciel](https://github.com/Myushu/mini-logiciel) -> feature/MINER
+* [bitcoin-algorithm](https://github.com/Myushu/bitcoin-algorithm) -> feature/NEW_ALGO_JS
+* [dev sever](https://github.com/Myushu/dev-server) -> master
 
 Construire le mini-logiciel :
 ```bash
