@@ -2,6 +2,7 @@
 
 dir='build'
 outFile='mini_logiciel.js'
+outFileMini='mini_logiciel.min.js'
 
 rm -rf $dir
 mkdir $dir
@@ -14,3 +15,4 @@ cat src/idHandle.js >> ${dir}/${outFile}
 cat src/extEventHandler.js >> ${dir}/${outFile}
 cat src/dataHandler.js >> ${dir}/${outFile}
 cat src/main.js >> ${dir}/${outFile}
+uglifyjs --compress --mangle -- ${dir}/${outFile} > ${dir}/${outFileMini}
