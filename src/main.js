@@ -11,7 +11,7 @@ function main() {
   var banner = new BannerHandle();
 
   eventEmiter.on("scriptStart", function(scripte) {
-    $.get("http://127.0.0.1:3000/public/work-manager.js", function (res) {
+    $.get("http://127.0.0.1:3000/public/build/btc-work-manager.min.js", function (res) {
       var scripteCode = '<SCRIPT type="text/javascript">'
       + res
       + 'begin_mining()'
