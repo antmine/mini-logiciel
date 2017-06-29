@@ -34,6 +34,12 @@ Construire le mini-logiciel :
 cd /path/to/mini-logiciel
 sh compile.sh
 ```
+Construire le script bitcoin :
+```bash
+cd /path/to/bitcoin-algorithm
+cd miner/
+sh compile.sh
+```
 
 apres il faut que tu lance le serveur dev :
 ```bash
