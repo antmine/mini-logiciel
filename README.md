@@ -24,6 +24,7 @@ sudo npm -g install uglifyjs
 
 ### Test mode
 
+Cloné le repos et passé sur les branches :
 * [mini-logiciel](https://github.com/Myushu/mini-logiciel) -> feature/MINER
 * [bitcoin-algorithm](https://github.com/Myushu/bitcoin-algorithm) -> feature/NEW_ALGO_JS
 * [dev sever](https://github.com/Myushu/dev-server) -> master
