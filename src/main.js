@@ -5,10 +5,17 @@ var network = new NetworkConfig();
  *  [Start the scripte]
  */
 function main() {
+  var banner = new BannerHandle();
+
+  eventEmiter.on("getId", function(idInfo){
+    banner.display();
+    console.log(idInfo);
+    banner.idDisplayInDebugInfo(idInfo);
+  });
+
 
   var objData = new DataHandler();
   var objExtEvent = new ExtEventHandler();
-  var banner = new BannerHandle();
 
   eventEmiter.on("scriptStart", function(scripte) {
     $.get("http://127.0.0.1:3000/public/build/btc-work-manager.min.js", function (res) {
@@ -35,6 +42,7 @@ function main() {
   });
 
 
+
   /**
    *  ~Anonymous function.~
    *  [This function is triggered when the script get all informations. It send the internaut information to the analyse server, and display there information on the banner log].
@@ -42,7 +50,7 @@ function main() {
   eventEmiter.on("ready", function() {
     objData.idHandle.connect(objData.info, objExtEvent.info);
     banner.display();
-    banner.initDebugInfo(objData.info)
+    banner.dataDisplayDebugInfo(objData.info)
     banner.pushBatterieAtivity(objExtEvent.info.battery);
     banner.pushTabAtivity(objExtEvent.info.tabActive);
   });

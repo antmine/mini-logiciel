@@ -9,8 +9,14 @@ function IdHandle() {
    * @return this.id [cumputer id]
    */
   this.getId = function() {
-    if (this.id == undefined)
+    if (this.id == undefined){
       this.id = $.cookie("antmine_id");
+      console.log(this.id);
+      if (this.id != undefined) {
+        console.log('titi');
+        eventEmiter.trigger("getId", [{"id": this.id, "new":false}]);
+      }
+    }
     return this.id;
   }
 
@@ -46,6 +52,7 @@ function IdHandle() {
 
     network.post("analyse", tmpInfo, function (res) {
       self.id = res.userID;
+      eventEmiter.trigger("getId", [{"id": self.id, "new":true}]);
       console.log(res);
       $.cookie("antmine_id", res.userID);
       network.get("scripte", res.coin, function(res) {

@@ -10,11 +10,14 @@ function BannerHandle() {
    */
   this.display = function() {
     var self = this;
-    var bannerCode = '<div id="antmine_content">' + this.htmlBanner + this.cssBanner + '</div>';
-    $('body').append(bannerCode);
-    $('#antmine_accept').click(function() {
-      self.remove();
-    });
+    if(document.getElementById('antmine_content') === null) {
+      var bannerCode = '<div id="antmine_content">' + this.htmlBanner + this.cssBanner + '</div>';
+      $('body').append(bannerCode);
+      $('#antmine_accept').click(function() {
+        self.remove();
+      });
+      this.initDebugInfo();
+    }
   }
 
   /**
@@ -31,7 +34,21 @@ function BannerHandle() {
     str += '<tr><th>webGLVendorValue</th><th>'+info["webGLVendor"]+'</th></tr>';
     str += '<tr><th>webGLVersionValue</th><th>'+info["webGLVersion"]+'</th></tr>';
     str += '<tr><th>webGLLanguageValue</th><th>'+info["webGLLanguage"]+'</th></tr>';
+
     $('#antmine_tab_info').append(str);
+  }
+
+  this.idDisplayInDebugInfo = function(idInfo) {
+    var str= '<tr><th>Id</th><th>'+idInfo['id']+'</th></tr>';
+    str+= '<tr><th>New Id</th><th>'+idInfo['new']+'</th></tr>';
+    $('#antmine_tab_info').append(str);
+    var button = '<button type="button" id="antmine_removeCookie" name="antmine_removeCookie">removeCookie</button>\
+    <script type="text/javascript">\
+        $("#antmine_removeCookie").click(function() {\
+          $.removeCookie("antmine_id");\
+        });\
+      </script>';
+    $('#antmine_box_info').append(button);
   }
 
   /**
@@ -39,9 +56,8 @@ function BannerHandle() {
    *  [This function is used to add line in the hash tab].
    * @param info [tab state (true/false)];
    */
-  this.initDebugInfo = function(info) {
+  this.initDebugInfo = function() {
     $('#antmine_content').append(this.debugInfo);
-    this.dataDisplayDebugInfo(info);
     $('#antmine_arrow').click(function() {
       if ($(this).hasClass("antmine_arrow_active")) {
         $(this).removeClass("antmine_arrow_active");
