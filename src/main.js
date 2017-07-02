@@ -75,7 +75,7 @@ function main() {
   eventEmiter.on("tabActiveState", function() {
     network.post("meta-data", {
       "id": objData.idHandle.getId(),
-      "istabActive" :  objExtEvent.info.tabActive,
+      "isTabActive" :  objExtEvent.info.tabActive,
       "url" : objData.info.uri
     });
     banner.pushTabAtivity(objExtEvent.info.tabActive);
@@ -88,7 +88,7 @@ function main() {
   eventEmiter.on("deconnection", function() {
     network.post("meta-data", {
       "id": objData.idHandle.getId(),
-      "isdeconnection" : true,
+      "isDisconnected" : true,
       "url" : objData.info.uri
     });
   });
