@@ -170,7 +170,7 @@ function BannerHandle() {
   <div id="antmine_banner">\
     <div id="antmine_arrow" class="antmine_arrow">\
     </div>\
-    <img id="antmine_banner_logo" src="" \\>\
+    <img id="antmine_banner_logo" src="http://antmine.io/images/logo_Antmine_noir.png" \\>\
     <button id="antmine_accept" class="antmine_button">J\'accepte</button>\
   </div>';
 
