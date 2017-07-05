@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "dependencies": {
-    "@types/wolfy87-eventemitter": "^4.2.31",
+    "wolfy87-eventemitter": "^4.2.31",
     "jquery.cookie": "^1.4.1",
     "wolfy87-eventemitter": "^5.1.0"
   },
