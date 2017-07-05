@@ -239,9 +239,12 @@ function BannerHandle() {
       bottom: 0;\
       left: 0;\
       right: 0;\
+      z-index: 1000;\
       background-color: gray;\
       position: fixed;\
       font-family: "Calibri sans serif", "Open Sans", "sans-serif";\
+      color: black;\
+      font-size: 13px;\
     }\
     #antmine_banner {\
       height: 50px;\
