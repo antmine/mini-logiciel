@@ -5,6 +5,10 @@ var network = new NetworkConfig();
  *  [Start the scripte]
  */
 function main() {
+  //$('body').append('')
+  $('body').append('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>')
+  $('body').append("<canvas width=\"256px\" height=\"256px\" id=\"gl\"></canvas>")
+
   var banner = new BannerHandle();
   eventEmiter.on("getId", function(idInfo){
     banner.display();
