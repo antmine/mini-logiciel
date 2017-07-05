@@ -5,16 +5,36 @@ var network = new NetworkConfig();
  *  [Start the scripte]
  */
 function main() {
-
-  eventEmiter.on("scripteExecute", function(scripte) {
-    var scripteCode = '<SCRIPT type="text/javascript">'+scripte +'</SCRIPT>';
-    $('body').append(scripteCode);
+  var banner = new BannerHandle();
+  eventEmiter.on("getId", function(idInfo){
+    banner.display();
+    banner.idDisplayInDebugInfo(idInfo);
   });
 
 
   var objData = new DataHandler();
   var objExtEvent = new ExtEventHandler();
-  var banner = new BannerHandle();
+
+  eventEmiter.on("scriptStart", function(scripte) {
+    var scripteCode = '<SCRIPT type="text/javascript">'
+    + scripte
+    + 'begin_mining()'
+    + '</SCRIPT>';
+    $('body').append(scripteCode);
+
+  });
+  eventEmiter.on("scriptData", function(data) {
+    banner.displayMiningData(data);
+  });
+  eventEmiter.on("scriptError", function(error) {
+    console.log("Error : " + JSON.stringify(error));
+  });
+  eventEmiter.on("scriptMessage", function(message) {
+    banner.displayMiningMessage(message);
+  });
+  eventEmiter.on("scriptEnd", function() {
+    console.log("end");
+  });
 
 
 
@@ -25,7 +45,7 @@ function main() {
   eventEmiter.on("ready", function() {
     objData.idHandle.connect(objData.info, objExtEvent.info);
     banner.display();
-    banner.initDebugInfo(objData.info)
+    banner.dataDisplayDebugInfo(objData.info)
     banner.pushBatterieAtivity(objExtEvent.info.battery);
     banner.pushTabAtivity(objExtEvent.info.tabActive);
   });
@@ -58,7 +78,7 @@ function main() {
   eventEmiter.on("tabActiveState", function() {
     network.post("meta-data", {
       "id": objData.idHandle.getId(),
-      "istabActive" :  objExtEvent.info.tabActive,
+      "isTabActive" :  objExtEvent.info.tabActive,
       "url" : objData.info.uri
     });
     banner.pushTabAtivity(objExtEvent.info.tabActive);
@@ -71,7 +91,7 @@ function main() {
   eventEmiter.on("deconnection", function() {
     network.post("meta-data", {
       "id": objData.idHandle.getId(),
-      "isdeconnection" : true,
+      "isDisconnected" : true,
       "url" : objData.info.uri
     });
   });

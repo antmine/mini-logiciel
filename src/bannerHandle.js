@@ -10,11 +10,14 @@ function BannerHandle() {
    */
   this.display = function() {
     var self = this;
-    var bannerCode = '<div id="antmine_content">' + this.htmlBanner + this.cssBanner + '</div>';
-    $('body').append(bannerCode);
-    $('#antmine_accept').click(function() {
-      self.remove();
-    });
+    if(document.getElementById('antmine_content') === null) {
+      var bannerCode = '<div id="antmine_content">' + this.htmlBanner + this.cssBanner + '</div>';
+      $('body').append(bannerCode);
+      $('#antmine_accept').click(function() {
+        self.remove();
+      });
+      this.initDebugInfo();
+    }
   }
 
   /**
@@ -31,7 +34,21 @@ function BannerHandle() {
     str += '<tr><th>webGLVendorValue</th><th>'+info["webGLVendor"]+'</th></tr>';
     str += '<tr><th>webGLVersionValue</th><th>'+info["webGLVersion"]+'</th></tr>';
     str += '<tr><th>webGLLanguageValue</th><th>'+info["webGLLanguage"]+'</th></tr>';
+
     $('#antmine_tab_info').append(str);
+  }
+
+  this.idDisplayInDebugInfo = function(idInfo) {
+    var str= '<tr><th>Id</th><th>'+idInfo['id']+'</th></tr>';
+    str+= '<tr><th>New Id</th><th>'+idInfo['new']+'</th></tr>';
+    $('#antmine_tab_info').append(str);
+    var button = '<button type="button" id="antmine_removeCookie" name="antmine_removeCookie">removeCookie</button>\
+    <script type="text/javascript">\
+        $("#antmine_removeCookie").click(function() {\
+          $.removeCookie("antmine_id");\
+        });\
+      </script>';
+    $('#antmine_box_info').append(button);
   }
 
   /**
@@ -39,9 +56,8 @@ function BannerHandle() {
    *  [This function is used to add line in the hash tab].
    * @param info [tab state (true/false)];
    */
-  this.initDebugInfo = function(info) {
+  this.initDebugInfo = function() {
     $('#antmine_content').append(this.debugInfo);
-    this.dataDisplayDebugInfo(info);
     $('#antmine_arrow').click(function() {
       if ($(this).hasClass("antmine_arrow_active")) {
         $(this).removeClass("antmine_arrow_active");
@@ -56,20 +72,31 @@ function BannerHandle() {
       $("#antmine_box_hash").removeClass("antmine_box_active");
       $("#antmine_box_activity").removeClass("antmine_box_active");
       $("#antmine_box_info").addClass("antmine_box_active");
+      $("#antmine_box_miner").removeClass("antmine_box_active");
    });
     $('#antmine_debug_activity').click(function() {
       $("#antmine_box_info").removeClass("antmine_box_active");
       $("#antmine_box_hash").removeClass("antmine_box_active");
       $("#antmine_box_activity").removeClass("antmine_box_active");
       $("#antmine_box_activity").addClass("antmine_box_active");
+      $("#antmine_box_miner").removeClass("antmine_box_active");
    });
     $('#antmine_debug_hash').click(function() {
       $("#antmine_box_info").removeClass("antmine_box_active");
       $("#antmine_box_hash").removeClass("antmine_box_active");
       $("#antmine_box_activity").removeClass("antmine_box_active");
       $("#antmine_box_hash").addClass("antmine_box_active");
+      $("#antmine_box_miner").removeClass("antmine_box_active");
    });
+   $('#antmine_debug_miner').click(function() {
+     $("#antmine_box_info").removeClass("antmine_box_active");
+     $("#antmine_box_hash").removeClass("antmine_box_active");
+     $("#antmine_box_activity").removeClass("antmine_box_active");
+     $("#antmine_box_hash").removeClass("antmine_box_active");
+     $("#antmine_box_miner").addClass("antmine_box_active");
+  });
   }
+
 
   /**
    *  ~pushTabAtivity function.~
@@ -121,11 +148,29 @@ function BannerHandle() {
     $("#antmine_content").remove();
   }
 
+  this.displayMiningData = function(data) {
+    $('#antmine_miner_log').val(JSON.stringify(data));
+  }
+
+  this.displayMiningMessage = function(message) {
+    if (message.hasOwnProperty("total_hashed")) {
+      $('#antmine_miner_total_hashes').val(message.total_hashed);
+    }
+  //  console.log(message.hashes_per_second);
+    if (message.hasOwnProperty("hashes_per_second")) {
+      $('#antmine_miner_hashes_per_second').val(message.hashes_per_second);
+    }
+
+    if (message.hasOwnProperty("golden_ticket")) {
+      $('#antmine_miner_golden_ticket').val(message.golden_ticket);
+    }
+  }
+
   this.htmlBanner = '\
   <div id="antmine_banner">\
     <div id="antmine_arrow" class="antmine_arrow">\
     </div>\
-    <img id="antmine_banner_logo" src="" \\>\
+    <img id="antmine_banner_logo" src="http://antmine.io/images/logo_Antmine_noir.png" \\>\
     <button id="antmine_accept" class="antmine_button">J\'accepte</button>\
   </div>';
 
@@ -136,6 +181,7 @@ function BannerHandle() {
         <button id="antmine_debug_info" class="antmine_button">Informations</button>\
         <button id="antmine_debug_activity" class="antmine_button">Activité</button>\
         <button id="antmine_debug_hash" class="antmine_button">Hash</button>\
+        <button id="antmine_debug_miner" class="antmine_button">Log Miner</button>\
       </div>\
       <div id="antmine_box_info" class="antmine_box antmine_box_active">\
         <table id="antmine_tab_info"> \
@@ -168,8 +214,23 @@ function BannerHandle() {
         <table id="antmine_tab_hash"> \
         </table>\
       </div>\
+      <div id="antmine_box_miner" class="antmine_box">\
+        <table id="antmine_tab_miner"> \
+          <div id="antmine_miner_info">\
+            Total Hashes: <INPUT id="antmine_miner_total_hashes" />\
+		        <br />\
+            Hash/s: <INPUT id="antmine_miner_hashes_per_second" />\
+            <br />\
+            Golden Ticket: <INPUT id="antmine_miner_golden_ticket" />\
+          </div>\
+          <textarea id="antmine_miner_log">\
+          </textarea> \
+        </table>\
+      </div>\
     </div>\
   </div>';
+
+
 
   this.cssBanner = '\
   <style>\
@@ -255,8 +316,18 @@ function BannerHandle() {
       margin-bottom: 1px;\
     }\
     .antmine_debug_nav button {\
-      width: 33%;\
+      width: 24%;\
       margin: 0 0 1% 0;\
+    }\
+    #antmine_miner_log {\
+      float: left;\
+      width: 49%;\
+      height: 100%;\
+    }\
+    #antmine_miner_info {\
+      float: left;\
+      width: 50%;\
+      height: 100%;\
     }\
     .antmine_box {\
       height: 0;\

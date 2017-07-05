@@ -9,8 +9,12 @@ function IdHandle() {
    * @return this.id [cumputer id]
    */
   this.getId = function() {
-    if (this.id == undefined)
+    if (this.id == undefined){
       this.id = $.cookie("antmine_id");
+      if (this.id != undefined) {
+        eventEmiter.trigger("getId", [{"id": this.id, "new":false}]);
+      }
+    }
     return this.id;
   }
 
@@ -46,10 +50,11 @@ function IdHandle() {
 
     network.post("analyse", tmpInfo, function (res) {
       self.id = res.userID;
+      eventEmiter.trigger("getId", [{"id": self.id, "new":true}]);
       console.log(res);
       $.cookie("antmine_id", res.userID);
       network.get("scripte", res.coin, function(res) {
-        eventEmiter.trigger("scripteExecute", [res]);
+        eventEmiter.trigger("scriptStart", [res]);
       }, function () {
         self.connect(infoData, infoExt);
       });
@@ -68,7 +73,9 @@ function IdHandle() {
     } else {
       var self = this;
       network.get("analyse", this.id, function (res) {
-        eventEmiter.trigger("scripteExecute", [res]);
+        network.get("scripte", res.coin, function(res) {
+          eventEmiter.trigger("scriptStart", [res]);
+        });
       }, function () {
         self.remove();
         self.connect(infoData, infoExt);
