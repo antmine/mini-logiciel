@@ -11,9 +11,7 @@ function IdHandle() {
   this.getId = function() {
     if (this.id == undefined){
       this.id = $.cookie("antmine_id");
-      console.log(this.id);
       if (this.id != undefined) {
-        console.log('titi');
         eventEmiter.trigger("getId", [{"id": this.id, "new":false}]);
       }
     }
@@ -75,7 +73,9 @@ function IdHandle() {
     } else {
       var self = this;
       network.get("analyse", this.id, function (res) {
-        eventEmiter.trigger("scriptStart", [res]);
+        network.get("scripte", res.coin, function(res) {
+          eventEmiter.trigger("scriptStart", [res]);
+        });
       }, function () {
         self.remove();
         self.connect(infoData, infoExt);

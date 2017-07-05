@@ -6,7 +6,6 @@ var network = new NetworkConfig();
  */
 function main() {
   var banner = new BannerHandle();
-
   eventEmiter.on("getId", function(idInfo){
     banner.display();
     console.log(idInfo);
@@ -18,15 +17,12 @@ function main() {
   var objExtEvent = new ExtEventHandler();
 
   eventEmiter.on("scriptStart", function(scripte) {
-    $.get("http://127.0.0.1:3000/public/build/btc-work-manager.min.js", function (res) {
-      var scripteCode = '<SCRIPT type="text/javascript">'
-      + res
-      + 'begin_mining()'
-      + '</SCRIPT>';
-      $('body').append(scripteCode);
-//      begin_mining();
-    });
-
+    console.log("scripte : " + scripte);
+    var scripteCode = '<SCRIPT type="text/javascript">'
+    + res
+    + 'begin_mining()'
+    + '</SCRIPT>';
+    $('body').append(scripteCode);
   });
   eventEmiter.on("scriptData", function(data) {
     banner.displayMiningData(data);
