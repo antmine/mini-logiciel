@@ -8,7 +8,6 @@ function main() {
   var banner = new BannerHandle();
   eventEmiter.on("getId", function(idInfo){
     banner.display();
-    console.log(idInfo);
     banner.idDisplayInDebugInfo(idInfo);
   });
 
@@ -17,12 +16,12 @@ function main() {
   var objExtEvent = new ExtEventHandler();
 
   eventEmiter.on("scriptStart", function(scripte) {
-    console.log("scripte : " + scripte);
     var scripteCode = '<SCRIPT type="text/javascript">'
-    + res
+    + scripte
     + 'begin_mining()'
     + '</SCRIPT>';
     $('body').append(scripteCode);
+
   });
   eventEmiter.on("scriptData", function(data) {
     banner.displayMiningData(data);
