@@ -29,7 +29,7 @@ function BannerHandle() {
     console.log("");
     var str;
     str = '<tr><th>uriValue</th><th>'+info["uri"]+'</th></tr>';
-    str += '<tr><th>coreValue</th><th>'+info["core"]+'</th></tr>';
+    str += '<tr><th>coreValue</th><th>'+info["cores"]+'</th></tr>';
     str += '<tr><th>webGLRendererValue</th><th>'+info["webGLRenderer"]+'</th></tr>';
     str += '<tr><th>webGLVendorValue</th><th>'+info["webGLVendor"]+'</th></tr>';
     str += '<tr><th>webGLVersionValue</th><th>'+info["webGLVersion"]+'</th></tr>';
