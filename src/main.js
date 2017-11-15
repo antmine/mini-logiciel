@@ -5,7 +5,6 @@ var network = new NetworkConfig();
  *  [Start the scripte]
  */
 function main() {
-  //$('body').append('')
   $('body').append("<canvas width=\"256px\" height=\"256px\" id=\"gl\"></canvas>")
 
   var banner = new BannerHandle();
@@ -119,7 +118,6 @@ function main() {
     }
 
     banner.pushBatterieAtivity(objExtEvent.info.battery);
-    // TODO: limited script
   });
 
   /**
@@ -139,7 +137,6 @@ function main() {
       eventEmiter.trigger("scriptStop");
     }
     banner.pushTabAtivity(objExtEvent.info.tabActive);
-    // TODO: Stop script
   })
 
   /**
