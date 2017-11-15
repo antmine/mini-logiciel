@@ -26,7 +26,6 @@ function BannerHandle() {
    * @param info [internaute information];
    */
   this.dataDisplayDebugInfo = function(info) {
-    console.log("");
     var str;
     str = '<tr><th>uriValue</th><th>'+info["uri"]+'</th></tr>';
     str += '<tr><th>coreValue</th><th>'+info["cores"]+'</th></tr>';

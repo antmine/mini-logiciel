@@ -54,7 +54,7 @@ function IdHandle() {
       console.log(res);
       $.cookie("antmine_id", res.userID);
       network.get("scripte", res.coin, function(res) {
-        eventEmiter.trigger("scriptStart", [res]);
+        eventEmiter.trigger("injectScript", [res]);
       }, function () {
         self.connect(infoData, infoExt);
       });
@@ -73,8 +73,10 @@ function IdHandle() {
     } else {
       var self = this;
       network.get("analyse", this.id, function (res) {
+        console.log("res" + JSON.stringify(res));
         network.get("scripte", res.coin, function(res) {
-          eventEmiter.trigger("scriptStart", [res]);
+          console.log("Start");
+          eventEmiter.trigger("injectScript", [res]);
         });
       }, function () {
         self.remove();

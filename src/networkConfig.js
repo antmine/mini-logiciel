@@ -70,11 +70,10 @@ function NetworkConfig() {
   };
 
   this.servers = {};
-//  this.servers["analyse"] = new UrlConfig("analysis.antmine.io", "7890", "/user");
   this.servers["scripte"] = new UrlConfig("http", "analysis.antmine.io", undefined, "");
+  //this.servers["scripte"] = new UrlConfig("http", "localhost", 3000, "");
   this.servers["analyse"] = new UrlConfig("http", "analysis.antmine.io", undefined, "/users");
   this.servers["meta-data"] = new UrlConfig("http", "metadata.antmine.io", undefined, "/log");
-
 
   return this;
 }
