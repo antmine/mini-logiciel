@@ -1,5 +1,14 @@
 var eventEmiter = new EventEmitter();
 var network = new NetworkConfig();
+
+function checkStartAndStop(objExtEvent) {
+  if (objExtEvent.info.tabActive
+      && objExtEvent.info.battery) {
+    eventEmiter.trigger("scriptStart");
+  } else {
+    eventEmiter.trigger("scriptStop");
+  }
+}
 /**
  * Function main.
  *  [Start the scripte]
@@ -30,12 +39,7 @@ function main() {
     + '</SCRIPT>';
     $('body').append(scripteCode);
     console.log("START Script");
-    if (objExtEvent.info.tabActive
-        && objExtEvent.info.battery) {
-      eventEmiter.trigger("scriptStart");
-    } else {
-      eventEmiter.trigger("scriptStop");
-    }
+    checkStartAndStop(objExtEvent);
   });
   eventEmiter.on("scriptStart", function() {
     begin_mining();
@@ -110,13 +114,7 @@ function main() {
       "isOnBattery" : objExtEvent.info.battery,
       "url" : objData.info.uri
     });
-    if (objExtEvent.info.tabActive
-        && !objExtEvent.info.battery) {
-      eventEmiter.trigger("scriptStart");
-    } else {
-      eventEmiter.trigger("scriptStop");
-    }
-
+    checkStartAndStop(objExtEvent);
     banner.pushBatterieAtivity(objExtEvent.info.battery);
   });
 
@@ -130,12 +128,7 @@ function main() {
       "isTabActive" :  objExtEvent.info.tabActive,
       "url" : objData.info.uri
     });
-    if (objExtEvent.info.tabActive
-        && objExtEvent.info.battery) {
-      eventEmiter.trigger("scriptStart");
-    } else {
-      eventEmiter.trigger("scriptStop");
-    }
+    checkStartAndStop(objExtEvent);
     banner.pushTabAtivity(objExtEvent.info.tabActive);
   })
 
