@@ -171,6 +171,10 @@ function BannerHandle() {
     </div>\
     <img id="antmine_banner_logo" src="http://antmine.io/images/logo_Antmine_noir.png" \\>\
     <button id="antmine_accept" class="antmine_button">J\'accepte</button>\
+    <div style="position:  absolute;top: 16px;left: 100px;">\
+	<span>Ce site utilise la solution AntMine. Pour plus d\'information, rendez sur</span>\
+	<a url="http://antmine.io" style="color: antiquewhite;cursor: pointer;">antmine.io</a>\
+    </div>\
   </div>';
 
   this.debugInfo = '\
